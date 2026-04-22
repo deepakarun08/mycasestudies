@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allocation Intelligence Module — Deepak Arun UX Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1e2e;
+    --navy-mid: #162436;
+    --navy-light: #1e3248;
+    --teal: #00b4a0;
+    --teal-light: #00d4bc;
+    --teal-faint: rgba(0,180,160,0.08);
+    --amber: #f59e0b;
+    --cream: #f5f0e8;
+    --cream-mid: #ede8de;
+    --text-primary: #0f1e2e;
+    --text-secondary: #4a6073;
+    --text-muted: #8299ab;
+    --white: #ffffff;
+    --border: rgba(15,30,46,0.1);
+    --border-teal: rgba(0,180,160,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  /* ── PROGRESS BAR ── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    width: 0%; z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── PORTFOLIO INTRO ── */
+  .portfolio-intro {
+    min-height: 100vh;
+    background: var(--cream);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 140px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-intro::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .portfolio-intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+  .intro-available {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,180,160,0.08);
+    border: 1px solid rgba(0,180,160,0.2);
+    border-radius: 40px;
+    padding: 6px 16px 6px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .intro-available span.dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .intro-greeting {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .intro-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
+  }
+  .intro-name .first { display: block; }
+  .intro-name .last {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--navy);
+  }
+  .intro-title-row {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.6s 0.45s forwards;
+  }
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--teal);
+  }
+  .intro-title-divider {
+    width: 40px; height: 1px;
+    background: var(--border);
+  }
+  .intro-title-years {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .intro-bio {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.6s 0.55s forwards;
+  }
+  .intro-bio strong { color: var(--text-primary); font-weight: 600; }
+  .intro-actions {
+    display: flex; gap: 16px; align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 2px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 14px 32px;
+    border-radius: 2px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+  .intro-skills-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.6s 0.75s forwards;
+	margin-bottom:48px
+  }
+  .skill-chip {
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .intro-stats-bar {
+    position: absolute;
+    bottom: 0; right: 0;
+    display: flex;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    opacity: 0; animation: fadeIn 0.8s 1s forwards;
+  }
+  .intro-stat {
+    padding: 28px 48px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .intro-stat:last-child { border-right: none; }
+  .intro-stat .n {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--text-primary); line-height: 1;
+  }
+  .intro-stat .n em { color: var(--teal); font-style: normal; }
+  .intro-stat .l {
+    font-size: 12px; font-weight: 400;
+    color: var(--text-muted); margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CASE STUDIES INDEX ── */
+  .cs-index {
+    padding: 80px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+  .cs-index-inner { max-width: 1300px; margin: 0 auto; }
+  .cs-index-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 40px;
+  }
+  .cs-index-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+  }
+  .cs-index-header span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .cs-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .cs-card {
+    background: var(--cream);
+    padding: 32px 28px;
+    text-decoration: none;
+    transition: background 0.25s;
+    position: relative;
+  }
+  .cs-card:hover { background: var(--white); }
+  .cs-card.active { background: var(--navy); }
+  .cs-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.1em; margin-bottom: 16px;
+    display: block;
+  }
+  .cs-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3; margin-bottom: 10px;
+  }
+  .cs-card.active h3 { color: var(--white); }
+  .cs-card p {
+    font-size: 13px; font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .cs-card.active p { color: rgba(255,255,255,0.5); }
+  .cs-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px; border-radius: 20px;
+    background: rgba(0,180,160,0.08);
+    color: var(--teal); letter-spacing: 0.06em;
+  }
+  .cs-card.active .cs-tag {
+    background: rgba(0,180,160,0.15);
+  }
+  .cs-coming {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-bg-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,160,0.12) 0%, transparent 70%);
+    top: -200px; right: -150px;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-subtitle {
+    font-size: 18px; font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-meta {
+    display: flex; gap: 48px; align-items: flex-start;
+    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+	margin-bottom:64px;
+  }
+  .hero-meta-item label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block; margin-bottom: 6px;
+  }
+  .hero-meta-item span {
+    font-size: 15px; font-weight: 500; color: var(--white);
+  }
+  .hero-stat-strip {
+    position: absolute; bottom: 0; right: 0;
+    display: flex;
+    opacity: 0; animation: fadeIn 1s 1.2s forwards;
+  }
+  .stat-block {
+    padding: 32px 48px;
+    border-left: 1px solid rgba(255,255,255,0.07);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .stat-block .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900;
+    color: var(--teal); line-height: 1;
+  }
+  .stat-block .label {
+    font-size: 12px; font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px; letter-spacing: 0.04em;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 100px 80px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .section-full {
+    padding: 100px 0;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--teal); }
+  .section-body {
+    font-size: 17px; font-weight: 300;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  /* ── CONTEXT BAND ── */
+  .context-band {
+    background: var(--navy);
+    padding: 80px;
+  }
+  .context-band-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .context-band .section-title { color: var(--white); }
+  .context-band .section-body { color: rgba(255,255,255,0.55); }
+  .quote-block {
+    background: var(--navy-mid);
+    border-left: 3px solid var(--teal);
+    padding: 32px 36px;
+    border-radius: 2px;
+  }
+  .quote-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .quote-block cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ── PROBLEM CARDS ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .problem-card {
+    background: var(--white);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .problem-card:hover { background: var(--cream); }
+  .problem-card .icon {
+    width: 44px; height: 44px;
+    background: var(--teal-faint);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .problem-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .problem-card p {
+    font-size: 14px; font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  /* ── ROLE STRIP ── */
+  .role-strip {
+    background: var(--cream-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 80px;
+  }
+  .role-strip-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: flex; gap: 60px; align-items: center;
+  }
+  .role-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .role-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    padding: 6px 16px;
+    border-radius: 40px;
+    font-size: 13px; font-weight: 500;
+    border: 1px solid var(--border-teal);
+    color: var(--teal);
+    background: var(--teal-faint);
+  }
+
+  /* ── PROCESS TIMELINE ── */
+  .process-section {
+    background: var(--navy);
+    padding: 100px 80px;
+  }
+  .process-inner { max-width: 1300px; margin: 0 auto; }
+  .process-inner .section-title { color: var(--white); margin-bottom: 64px; }
+  .process-timeline {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+  .process-step {
+    flex: 1;
+    padding-top: 64px;
+    padding-right: 32px;
+    position: relative;
+    cursor: pointer;
+  }
+  .step-dot {
+    position: absolute;
+    top: 20px; left: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    background: var(--navy);
+    transition: all 0.3s;
+  }
+  .process-step:hover .step-dot,
+  .process-step.active .step-dot {
+    border-color: var(--teal);
+    background: var(--teal);
+    box-shadow: 0 0 0 6px rgba(0,180,160,0.15);
+  }
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 12px;
+  }
+  .step-body {
+    font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+  }
+
+  /* ── DESIGN DECISIONS ── */
+  .decisions-section { padding: 100px 80px; }
+  .decisions-inner { max-width: 1300px; margin: 0 auto; }
+  .decision-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .decision-row:last-child { border-bottom: none; }
+  .decision-meta { position: sticky; top: 100px; }
+  .decision-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px; font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .decision-meta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .decision-screen-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .decision-content p {
+    font-size: 16px; font-weight: 300;
+    line-height: 1.85; color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+  .decision-content p:last-child { margin-bottom: 0; }
+  .decision-content strong { color: var(--text-primary); font-weight: 600; }
+  .insight-box {
+    background: var(--navy);
+    border-left: 3px solid var(--teal);
+    padding: 24px 28px;
+    border-radius: 2px;
+    margin-top: 28px;
+  }
+  .insight-box p {
+    font-size: 14px !important;
+    color: rgba(255,255,255,0.65) !important;
+    margin-bottom: 0 !important;
+  }
+  .insight-box strong { color: var(--teal) !important; }
+
+  /* ── SCREEN SHOWCASE ── */
+  .screens-section {
+    background: var(--navy-mid);
+    padding: 100px 80px;
+  }
+  .screens-inner { max-width: 1300px; margin: 0 auto; }
+  .screens-inner .section-title { color: var(--white); }
+  .screens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .screen-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .screen-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .screen-card.wide { grid-column: span 2; }
+  .screen-img {
+    width: 100%; display: block;
+    background: #1a2d40;
+  }
+  .screen-caption {
+    padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .screen-name {
+    font-size: 14px; font-weight: 500;
+    color: rgba(255,255,255,0.75);
+  }
+  .screen-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: var(--teal);
+    background: rgba(0,180,160,0.1);
+    padding: 4px 10px; border-radius: 20px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-section { padding: 100px 80px; }
+  .outcomes-inner { max-width: 1300px; margin: 0 auto; }
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+  }
+  .outcome-card {
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .outcome-card:hover::before { transform: scaleX(1); }
+  .outcome-card:hover {
+    border-color: var(--border-teal);
+    transform: translateY(-2px);
+  }
+  .outcome-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .outcome-label {
+    font-size: 14px; font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .outcome-detail {
+    font-size: 13px; font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection-section {
+    background: var(--navy);
+    padding: 100px 80px;
+  }
+  .reflection-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .reflection-inner .section-title { color: var(--white); }
+  .reflection-inner .section-body { color: rgba(255,255,255,0.55); }
+  .reflection-list { margin-top: 32px; }
+  .reflection-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; gap: 20px; align-items: start;
+  }
+  .reflection-item:last-child { border-bottom: none; }
+  .r-icon {
+    width: 32px; height: 32px; flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(0,180,160,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; margin-top: 2px;
+  }
+  .r-text h4 {
+    font-size: 15px; font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+  .r-text p {
+    font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ── NEXT CASE STUDY CTA ── */
+  .cta-section {
+    padding: 100px 80px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 2px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.3s;
+  }
+  .cta-btn:hover { background: var(--teal); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 100%; max-height: 90vh;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute; top: 24px; right: 32px;
+    color: rgba(255,255,255,0.5);
+    font-size: 28px; cursor: pointer;
+    transition: color 0.2s;
+    background: none; border: none;
+  }
+  .lightbox-close:hover { color: var(--white); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s, transform 0.7s;
+	opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── SCREEN PLACEHOLDER IMAGES ── */
+  .screen-mock {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #162436 0%, #1e3248 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-mock::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(0,180,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,160,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .screen-mock-icon { font-size: 32px; opacity: 0.3; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero { padding: 120px 40px 80px; }
+    .hero-stat-strip { position: relative; margin-top: 48px; }
+    .context-band-inner,
+    .reflection-inner { grid-template-columns: 1fr; gap: 48px; }
+    .problem-grid { grid-template-columns: 1fr 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .screens-grid { grid-template-columns: 1fr; }
+    .screen-card.wide { grid-column: span 1; }
+    .decision-row { grid-template-columns: 1fr; gap: 32px; }
+    nav { padding: 20px 32px; }
+    .section, .decisions-section, .outcomes-section, .cta-section { padding: 80px 40px; }
+    .process-section, .screens-section, .reflection-section { padding: 80px 40px; }
+    .context-band, .role-strip { padding: 60px 40px; }
+    .portfolio-intro { padding: 120px 40px 80px; }
+    .cs-index { padding: 60px 40px; }
+    .cs-cards { grid-template-columns: 1fr 1fr; }
+    .intro-stats-bar { position: relative; margin-top: 48px; border: 1px solid var(--border); }
+  }
+  @media (max-width: 640px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .process-timeline { flex-direction: column; }
+    .process-timeline::before { display: none; }
+    .hero-stat-strip { flex-direction: column; }
+    .intro-stats-bar { flex-direction: column; }
+    .nav-links { display: none; }
+    .cs-cards { grid-template-columns: 1fr; }
+    .intro-name { font-size: 56px; }
+  }
+</style>
+
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Deepak Arun</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="cs01-zams.html">ZAMS Portal</a>
+    <a href="cs02-aim.html" style="color:var(--teal);">AIM</a>
+    <a href="cs03-warehouse.html">Warehouse Portal</a>
+    <a href="cs04-sales-accelerator.html">Sales Accelerator</a>
+  </div>
+</nav>
+
+<div id="progress-bar"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ── CASE STUDY DIVIDER ── -->
+<div style="background:var(--navy); padding:96px 64px 48px 64px; border-top:4px solid var(--teal);">
+  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Case Study 02 — Deep Dive</p>
+      <p style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--white); line-height:1.2;">Allocation Intelligence Module <em style="font-style:italic; color:var(--teal);">— AIM</em></p>
+    </div>
+    <div style="font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">RedTag · BMA International</div>
+  </div>
+</div>
+
+
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow"></div>
+  <p class="hero-eyebrow">Case Study 02 · Enterprise UX · Retail Allocation</p>
+  <h1 class="hero-title">From 60 Minutes<br>of Excel <em>Hell</em><br>to 5 Minutes Flat.</h1>
+  <p class="hero-subtitle">How I designed AIM — the Allocation Intelligence Module — a complex multi-module web application that eliminated a fragile, manual stock distribution process across RedTag's retail network.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <label>Client</label>
+      <span>RedTag / BMA International</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>My Role</label>
+      <span>Lead UX Designer (Solo)</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>Platform</label>
+      <span>Web Application</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>Domain</label>
+      <span>Retail Allocation · Enterprise SaaS</span>
+    </div>
+  </div>
+  <div class="hero-stat-strip">
+    <div class="stat-block">
+      <div class="num">92%</div>
+      <div class="label">Time Reduction</div>
+    </div>
+    <div class="stat-block">
+      <div class="num">60→5</div>
+      <div class="label">Minutes per Allocation</div>
+    </div>
+    <div class="stat-block">
+      <div class="num">0</div>
+      <div class="label">Manual Errors Post-Launch</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTEXT ── -->
+<section class="section-full" id="problem">
+  <div class="context-band">
+    <div class="context-band-inner">
+      <div>
+        <p class="section-eyebrow reveal">The Problem</p>
+        <h2 class="section-title reveal">A business running on<br><em>spreadsheets and luck.</em></h2>
+        <p class="section-body reveal">RedTag — a multi-brand fashion retailer operating across the Gulf region — managed stock allocation across dozens of stores using Excel. Every morning, the allocation team would manually pull inventory data, apply distribution logic by hand, and push quantities to stores. One wrong formula, one outdated lookup, one missed row: and the wrong products ended up in the wrong stores.</p>
+        <br>
+        <p class="section-body reveal" style="margin-top:16px;">The business needed a system that could encode their complex allocation logic — product hierarchies, country splits, sales factor weightings, buffer calculations — into a reliable, repeatable workflow. I was brought in as the sole UX designer to make that system something analysts would actually want to use every day.</p>
+      </div>
+      <div class="reveal">
+        <div class="quote-block">
+          <p>"Every allocation was a risk. If someone made a formula error in Excel, we wouldn't know until stock had already moved. By then, fixing it cost us days."</p>
+          <cite>— Allocation Manager, RedTag (Stakeholder Brief)</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEM CARDS ── -->
+<div style="max-width:1300px; margin:0 auto; padding:0 80px 0;">
+  <div class="problem-grid reveal">
+    <div class="problem-card">
+      <div class="icon">⏱️</div>
+      <h3>60+ Minutes Daily</h3>
+      <p>Each allocation run required manually copying and transforming data across multiple Excel files. Repetitive, slow, and entirely dependent on individual attention.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">⚠️</div>
+      <h3>Zero Error Safety Net</h3>
+      <p>A mistyped formula or a stale reference wouldn't surface until after stock had moved. There was no validation layer, no alerts, no blocked styles — no guardrails.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">🧩</div>
+      <h3>Hidden Complexity</h3>
+      <p>The allocation logic involved product hierarchies (H1–H4), country-level splits, sales factor configurations, and buffer percentages — none of it visible, auditable, or transferable.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── ROLE STRIP ── -->
+<div class="role-strip" style="margin-top:80px;">
+  <div class="role-strip-inner">
+    <span class="role-label">My Role</span>
+    <div class="role-tags">
+      <span class="tag">Sole UX Designer</span>
+      <span class="tag">UX Strategy</span>
+      <span class="tag">Information Architecture</span>
+      <span class="tag">Interaction Design</span>
+      <span class="tag">UI Design</span>
+      <span class="tag">Stakeholder Workshops</span>
+      <span class="tag">Design System</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── PROCESS ── -->
+<section class="process-section" id="process">
+  <div class="process-inner">
+    <p class="section-eyebrow reveal">My Process</p>
+    <h2 class="section-title reveal">How I approached a<br><em>system I didn't know.</em></h2>
+    <div class="process-timeline reveal">
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">01 — Understand</div>
+        <div class="step-title">Domain Immersion</div>
+        <div class="step-body">I sat with the allocation team and watched them work through a live Excel run. I needed to understand the mental model before I could design around it. I mapped every formula to a business decision.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">02 — Define</div>
+        <div class="step-title">Flow Architecture</div>
+        <div class="step-body">I identified the core workflow: brand selection → order type → hierarchy selection → country configuration → item data sheet. Everything else was a module within this spine.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">03 — Ideate</div>
+        <div class="step-title">Competing Approaches</div>
+        <div class="step-body">I explored a single long-form page vs. a wizard vs. a canvas approach. A wizard won because it enforced decision sequence — you can't configure country splits before choosing a hierarchy.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">04 — Design</div>
+        <div class="step-title">Component-Led UI</div>
+        <div class="step-body">Built a dark-sidebar enterprise system with a consistent 3-step progress model, dependent dropdowns, multi-select filters, and a configurable data table — all from scratch.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">05 — Validate</div>
+        <div class="step-title">Stakeholder Reviews</div>
+        <div class="step-body">Ran working sessions with the allocation manager and business team. Iterated on the selection module and item data sheet column configuration based on direct feedback.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DESIGN DECISIONS ── -->
+<section class="decisions-section" id="decisions">
+  <div class="decisions-inner">
+    <p class="section-eyebrow reveal">Key Design Decisions</p>
+    <h2 class="section-title reveal">Five choices that made<br>the <em>difference.</em></h2>
+
+    <!-- Decision 1 -->
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">01</div>
+        <h3>The 3-Step Wizard Over a Single Form</h3>
+        <div class="decision-screen-label">Order Type → Selection → Data Sheet</div>
+      </div>
+      <div class="decision-content">
+        <p>My first instinct — and the stakeholders' initial request — was a single long configuration page. It seemed efficient. But when I mapped all the inputs together, I realised the form had <strong>hard dependencies</strong>: you couldn't configure country splits before setting a product hierarchy. You couldn't reach item data without completing selection first. The sequence wasn't arbitrary — it was logical.</p>
+        <p>I introduced a 3-step wizard with a persistent progress stepper at the top. Each step is self-contained, validated before proceeding, and clearly labelled: <strong>Order Type → Selection Module → Item Data Sheet</strong>. This eliminated the "blank stare" problem where users didn't know what to fill first, and it naturally enforced data integrity — the system couldn't generate an allocation from incomplete configuration.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "The wizard pattern wasn't just a UX choice — it was a data integrity decision. Enforcing sequence in the UI meant fewer validation errors in the back end. I aligned the user flow with the technical dependency graph."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision 2 -->
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">02</div>
+        <h3>Dependent Hierarchy Filtering with Live Context Hints</h3>
+        <div class="decision-screen-label">Selection Module — Country Split</div>
+      </div>
+      <div class="decision-content">
+        <p>The product hierarchy had four levels: Division (H1) → Department (H2) → Sub-Department (H3) → Category (H4). In Excel, analysts had to cross-reference lookup tables manually to understand what was valid at each level. In the new system, I designed <strong>cascading dropdowns</strong> where lower levels are locked until the higher level is selected.</p>
+        <p>I added a small amber contextual hint: "Lower hierarchy levels are enabled based on higher-level selection." This tiny detail — which I debated removing for being "obvious" — turned out to be one of the most praised elements in stakeholder reviews. <strong>First-time users read it. Experienced users ignored it.</strong> That's exactly what good hint text does.</p>
+        <p>Multi-select chip tags for department and category selections (BOY, GIR, BOA, BUL, BAG, HBG) also let analysts see their configuration at a glance without re-opening dropdowns — reducing cognitive load on a data-dense screen.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "I spent real time on the contextual hint copy. It needed to be informative without being condescending. The principle I followed: write for the user on day three, not day one."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision 3 -->
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">03</div>
+        <h3>Country Split Configured on the Same Screen as Hierarchy</h3>
+        <div class="decision-screen-label">Selection Module — 3-Panel Layout</div>
+      </div>
+      <div class="decision-content">
+        <p>This was the hardest layout decision I made. Country split configuration (which countries, which split granularity, which sales factor), product hierarchy, and calculation control (buffer %, final AVG%) are <strong>three interdependent configurations</strong>. Putting them on separate steps would have created constant back-and-forth. Putting them all on one screen risked overwhelming users.</p>
+        <p>I landed on a <strong>3-panel horizontal layout</strong> within a single wizard step: Product Hierarchy on the left, Country Split Configuration in the centre, Calculation Control on the right. This mirrored how analysts actually think — they consider hierarchy and country split simultaneously. The layout externalised that mental model into the interface.</p>
+        <p>The "Split by" toggles (Item Style, Range, Color) were a specific decision to represent a mutually-inclusive selection — not radio buttons, not checkboxes, but toggles — because analysts sometimes needed multiple split granularities enabled together.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "I mapped the screens against the analysts' actual thought sequence before I drew a single frame. Layout decisions should reflect cognition, not just aesthetics."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision 4 -->
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">04</div>
+        <h3>A Configurable Data Table with Persistent Column Visibility</h3>
+        <div class="decision-screen-label">Item Data Sheet</div>
+      </div>
+      <div class="decision-content">
+        <p>The Item Data Sheet was where the allocation actually lived — 50 items, 25 eligible stores, 2,000 suggested allocations, and 16 blocked items surfaced in a summary bar at the top. The table itself had 25+ columns spanning fixed headers (PACK CODE, ITEM CODE, H1–H4, STORE GRID, PROMO FLAG) and optional attribute columns (ATTR1–4).</p>
+        <p>Putting 25+ columns in front of a user with no control is a recipe for overwhelm. I designed a <strong>left-panel column visibility manager</strong> with toggle-eye icons, split into "Display Headers (Fixed)" and "Optional Headers." Users could personalise what they saw without losing data — and a <strong>Save Template</strong> action preserved their configuration for future sessions.</p>
+        <p>The summary tiles (Total Items, Eligible Stores, Suggested Allocations, Blocked Items) at the top gave users <strong>instant allocation health awareness</strong> before they even looked at rows. The red "Blocked Items" tile was intentionally alarming — those needed immediate attention.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "The summary tiles were designed to answer the first question every analyst asks when they land on a data sheet: 'Is this allocation healthy?' I wanted that answer visible in under a second, without reading a single row."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision 5 -->
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">05</div>
+        <h3>The Dashboard as a Control Tower, Not a Welcome Screen</h3>
+        <div class="decision-screen-label">Dashboard</div>
+      </div>
+      <div class="decision-content">
+        <p>The dashboard could have been a simple landing page with a "Start" button. Instead, I designed it as an <strong>operational control tower</strong>. Three status tiles at the top — Benchmarks Updated (12), Pending Validations (7, with 5 urgent), and Blocked Styles (3, +3 this week) — surface the health of the entire allocation pipeline before any action is taken.</p>
+        <p>The Recent Allocations table showed real-time allocation history by type, brand, date, and status — including Error states, which are as important to surface as Completed ones. An analyst could return to the dashboard after lunch and immediately know: has anything broken? what's pending? what needs me?</p>
+        <p>The "Start New Allocation" call-to-action was intentionally prominent but not the only thing on the screen. The dashboard had to <strong>serve the returning user</strong>, not just the first-time user.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "I always design dashboards for the 90% case, not the 10% case. The 90% case here was a returning analyst, not a new user. That's why operational status came first, and onboarding CTAs came second."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCREEN SHOWCASE ── -->
+<section class="screens-section" id="screens">
+  <div class="screens-inner">
+    <p class="section-eyebrow reveal">Screen Walkthrough</p>
+    <h2 class="section-title reveal">The system, <em>end to end.</em></h2>
+    <div class="screens-grid reveal">
+
+      <div class="screen-card wide" onclick="openLightbox('images/dashboard.png')">
+        <img class="screen-img" src="images/dashboard.png" alt="AIM Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📊</div>Dashboard</div>
+        <div class="screen-caption">
+          <span class="screen-name">Dashboard — Allocation Control Tower</span>
+          <span class="screen-badge">Step 0</span>
+        </div>
+      </div>
+
+      <div class="screen-card" onclick="openLightbox('images/select-brand.png')">
+        <img class="screen-img" src="images/select-brand.png" alt="Select Brand" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🏷️</div>Select Brand</div>
+        <div class="screen-caption">
+          <span class="screen-name">Brand Selection</span>
+          <span class="screen-badge">Pre-step</span>
+        </div>
+      </div>
+
+      <div class="screen-card" onclick="openLightbox('images/SelectOrderType.png')">
+        <img class="screen-img" src="images/SelectOrderType.png" alt="Order Type" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📋</div>Order Type</div>
+        <div class="screen-caption">
+          <span class="screen-name">Select Order Type — Step 1</span>
+          <span class="screen-badge">Step 1 of 3</span>
+        </div>
+      </div>
+
+      <div class="screen-card" onclick="openLightbox('images/SubOrderType.png')">
+        <img class="screen-img" src="images/SubOrderType.png" alt="Order Type Dropdown" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📋</div>Split Type</div>
+        <div class="screen-caption">
+          <span class="screen-name">Select Sub Order Type</span>
+          <span class="screen-badge">Step 1 of 3</span>
+        </div>
+      </div>
+
+      <div class="screen-card" onclick="openLightbox('images/SelectionModule.png')">
+        <img class="screen-img" src="images/SelectionModule.png" alt="Selection Module - Country Dropdown" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🌍</div>Selection Module</div>
+        <div class="screen-caption">
+          <span class="screen-name">Selection Module</span>
+          <span class="screen-badge">Step 2 of 3</span>
+        </div>
+      </div>
+
+      <div class="screen-card" onclick="openLightbox('images/dataSheet.png')">
+        <img class="screen-img" src="images/dataSheet.png" alt="Selection Module - Configured" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">⚙️</div>Selection Config</div>
+        <div class="screen-caption">
+          <span class="screen-name">Item Data Sheet</span>
+          <span class="screen-badge">Step 3 of 3</span>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,0.3); text-align:center; font-family:'DM Mono',monospace; letter-spacing:0.06em;">Click any screen to enlarge</p>
+  </div>
+</section>
+
+<!-- ── OUTCOMES ── -->
+<section class="outcomes-section" id="outcomes">
+  <div class="outcomes-inner">
+    <p class="section-eyebrow reveal">Outcomes & Impact</p>
+    <h2 class="section-title reveal">The numbers that<br>made it <em>real.</em></h2>
+    <div class="outcomes-grid reveal">
+      <div class="outcome-card">
+        <div class="outcome-num">92%</div>
+        <div class="outcome-label">Time Reduction</div>
+        <div class="outcome-detail">Allocation time dropped from ~60 minutes to under 5 minutes per run — a near-complete elimination of manual effort.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">0</div>
+        <div class="outcome-label">Formula Errors Post-Launch</div>
+        <div class="outcome-detail">The Excel-era formula mistakes — wrong lookups, stale references, incorrect cross-tab copies — disappeared entirely after go-live.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">2+</div>
+        <div class="outcome-label">Brands Supported</div>
+        <div class="outcome-detail">The brand-selector architecture (REDTAG / TWENTY4) was designed to scale. Adding a new brand became a configuration decision, not a redesign.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">Full</div>
+        <div class="outcome-label">Audit Visibility</div>
+        <div class="outcome-detail">Every allocation is now logged with type, brand, date, and status — providing a complete traceable history that Excel never could.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFLECTION ── -->
+<section class="reflection-section" id="reflection">
+  <div class="reflection-inner">
+    <div>
+      <p class="section-eyebrow reveal">Reflection</p>
+      <h2 class="section-title reveal">What I'd do<br><em>differently.</em></h2>
+      <p class="section-body reveal">Building a complex enterprise tool as a solo designer is demanding and rewarding in equal measure. Looking back, here's what I learned — and what I'd change.</p>
+    </div>
+    <div class="reflection-list reveal">
+      <div class="reflection-item">
+        <div class="r-icon">🔍</div>
+        <div class="r-text">
+          <h4>I'd push harder for user shadowing sessions earlier</h4>
+          <p>Working from stakeholder requirements meant I was designing for a described workflow, not an observed one. A few sessions watching analysts work in Excel before any design started would have surfaced edge cases I only caught later in review.</p>
+        </div>
+      </div>
+      <div class="reflection-item">
+        <div class="r-icon">📐</div>
+        <div class="r-text">
+          <h4>I'd design the empty states on day one</h4>
+          <p>Empty states — dashboard with no recent allocations, data sheet with no filtered results — were designed last. They should have been designed alongside the filled states, because they're what users see most when they're confused.</p>
+        </div>
+      </div>
+      <div class="reflection-item">
+        <div class="r-icon">📊</div>
+        <div class="r-text">
+          <h4>I'd push for a usability test before final handoff</h4>
+          <p>We validated through stakeholder reviews, not analyst testing. Given access, I'd have run at least two task-based tests — "complete a Country Split allocation for REDTAG, BOY department" — to catch any flow friction before development locked things in.</p>
+        </div>
+      </div>
+      <div class="reflection-item">
+        <div class="r-icon">⚡</div>
+        <div class="r-text">
+          <h4>The 3-panel layout on Selection Module was worth defending</h4>
+          <p>There was pushback on putting three panels on one screen. I'm glad I held the position. The alternative — separate steps for hierarchy, country, and calculation — would have added three extra clicks per allocation run, multiplied by daily usage, multiplied by every analyst. Friction compounds.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section style="background:var(--cream-mid); padding:60px 80px; border-top:1px solid var(--border);">
+  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div><a href="cs01-zams.html" class="btn-secondary">← ZAMS Portal — Case Study 01</a></div>
+    <a href="index.html" style="font-family:'DM Mono',monospace; font-size:12px; color:var(--text-muted); letter-spacing:0.08em; text-decoration:none;">↑ Back to All Work</a>
+    <div><a href="cs03-warehouse.html" class="btn-primary">Warehouse Portal — Case Study 03 →</a></div>
+  </div>
+</section>
+<section id="contact" style="background:var(--navy); padding:100px 80px 0;">
+  <div style="max-width:1300px; margin:0 auto;">
+    <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px;" class="reveal">Let's Work Together</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,80px); font-weight:900; color:var(--white); line-height:1.0; letter-spacing:-0.02em; margin-bottom:48px;" class="reveal">Got a project?<br><em style="color:var(--teal); font-style:italic;">Let's talk.</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:80px;" class="reveal">
+      <a href="mailto:deepakarun08@gmail.com" style="display:flex; align-items:center; gap:20px; background:var(--navy-mid); border:1px solid rgba(255,255,255,0.07); padding:28px 32px; text-decoration:none; border-radius:2px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,180,160,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="width:44px; height:44px; background:rgba(0,180,160,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">✉️</div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Email</div>
+          <div style="font-size:16px; font-weight:500; color:var(--white);">deepakarun08@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+919999619008" style="display:flex; align-items:center; gap:20px; background:var(--navy-mid); border:1px solid rgba(255,255,255,0.07); padding:28px 32px; text-decoration:none; border-radius:2px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,180,160,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="width:44px; height:44px; background:rgba(0,180,160,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">📱</div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Mobile</div>
+          <div style="font-size:16px; font-weight:500; color:var(--white);">+91 99996 19008</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.07); padding:32px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <span style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:rgba(255,255,255,0.5);">Deepak Arun</span>
+      <span style="font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">Senior UX Designer · 10+ Years · Available for Opportunities</span>
+      <a href="#intro" style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.08em; text-decoration:none;">Back to Top ↑</a>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress-bar');
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    el.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+
+
+</script>
+</body>
+</html>

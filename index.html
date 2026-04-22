@@ -3,919 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deepak Arun — UX Portfolio</title>
+<title>Deepak Arun — Senior UX Designer Portfolio</title>
+<meta name="description" content="Senior UX Designer with 10+ years designing enterprise digital products. Oracle Redwood, supply chain, retail tech, B2B SaaS.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0f1e2e;
-    --navy-mid: #162436;
-    --navy-light: #1e3248;
-    --teal: #00b4a0;
-    --teal-light: #00d4bc;
-    --teal-faint: rgba(0,180,160,0.08);
-    --amber: #f59e0b;
-    --cream: #f5f0e8;
-    --cream-mid: #ede8de;
-    --text-primary: #0f1e2e;
-    --text-secondary: #4a6073;
-    --text-muted: #8299ab;
-    --white: #ffffff;
-    --border: rgba(15,30,46,0.1);
-    --border-teal: rgba(0,180,160,0.25);
+    --navy: #0f1e2e; --navy-mid: #162436; --navy-light: #1e3248;
+    --teal: #00b4a0; --teal-light: #00d4bc; --teal-faint: rgba(0,180,160,0.08);
+    --cream: #f5f0e8; --cream-mid: #ede8de;
+    --text-primary: #0f1e2e; --text-secondary: #4a6073; --text-muted: #8299ab;
+    --white: #ffffff; --border: rgba(15,30,46,0.1); --border-teal: rgba(0,180,160,0.25);
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--text-primary);
-    overflow-x: hidden;
-  }
-
-  /* ── PROGRESS BAR ── */
-  #progress-bar {
-    position: fixed; top: 0; left: 0; height: 3px;
-    background: linear-gradient(90deg, var(--teal), var(--teal-light));
-    width: 0%; z-index: 1000;
-    transition: width 0.1s linear;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 20px 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(245,240,232,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-  .nav-logo {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; font-weight: 500;
-    color: var(--teal);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text-primary); overflow-x: hidden; }
+  #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--teal), var(--teal-light)); width: 0%; z-index: 1000; transition: width 0.1s linear; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; align-items: center; justify-content: space-between; background: rgba(245,240,232,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
   .nav-links { display: flex; gap: 32px; }
-  .nav-links a {
-    font-size: 13px; font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
+  .nav-links a { font-size: 13px; font-weight: 500; color: var(--text-secondary); text-decoration: none; letter-spacing: 0.02em; transition: color 0.2s; }
   .nav-links a:hover { color: var(--teal); }
-
-  /* ── PORTFOLIO INTRO ── */
-  .portfolio-intro {
-    min-height: 100vh;
-    background: var(--cream);
-    display: flex; flex-direction: column;
-    justify-content: center;
-    padding: 140px 80px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .portfolio-intro::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 800px; height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,160,0.06) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .portfolio-intro::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 1px;
-    background: var(--border);
-  }
-  .intro-available {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,180,160,0.08);
-    border: 1px solid rgba(0,180,160,0.2);
-    border-radius: 40px;
-    padding: 6px 16px 6px 10px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    color: var(--teal);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    width: fit-content;
-    margin-bottom: 36px;
-    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
-  }
-  .intro-available span.dot {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--teal);
-    display: inline-block;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-  .intro-greeting {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px; font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
-  }
-  .intro-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(56px, 8vw, 110px);
-    font-weight: 900;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 28px;
-    opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
-  }
-  .intro-name .first { display: block; }
-  .intro-name .last {
-    display: block;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--navy);
-  }
-  .intro-title-row {
-    display: flex; align-items: center; gap: 20px;
-    margin-bottom: 36px;
-    opacity: 0; animation: fadeUp 0.6s 0.45s forwards;
-  }
-  .intro-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(20px, 2.5vw, 28px);
-    font-weight: 400;
-    font-style: italic;
-    color: var(--teal);
-  }
-  .intro-title-divider {
-    width: 40px; height: 1px;
-    background: var(--border);
-  }
-  .intro-title-years {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; color: var(--text-muted);
-    letter-spacing: 0.08em;
-  }
-  .intro-bio {
-    font-size: clamp(16px, 1.8vw, 20px);
-    font-weight: 300;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    max-width: 680px;
-    margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.6s 0.55s forwards;
-  }
-  .intro-bio strong { color: var(--text-primary); font-weight: 600; }
-  .intro-actions {
-    display: flex; gap: 16px; align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-    opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--navy);
-    color: var(--white);
-    padding: 14px 32px;
-    border-radius: 2px;
-    font-size: 13px; font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: background 0.25s, transform 0.2s;
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: var(--white); padding: 14px 32px; border-radius: 2px; font-size: 13px; font-weight: 600; text-decoration: none; letter-spacing: 0.04em; transition: background 0.25s, transform 0.2s; }
   .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--border);
-    color: var(--text-secondary);
-    padding: 14px 32px;
-    border-radius: 2px;
-    font-size: 13px; font-weight: 500;
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: border-color 0.25s, color 0.25s;
-  }
+  .btn-secondary { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); color: var(--text-secondary); padding: 14px 32px; border-radius: 2px; font-size: 13px; font-weight: 500; text-decoration: none; letter-spacing: 0.04em; transition: border-color 0.25s, color 0.25s; }
   .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
-  .intro-skills-row {
-    display: flex; gap: 12px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.6s 0.75s forwards;
-	margin-bottom:48px
-  }
-  .skill-chip {
-    padding: 6px 14px;
-    border-radius: 40px;
-    font-size: 12px; font-weight: 500;
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-    background: var(--white);
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .skill-chip:hover { border-color: var(--teal); color: var(--teal); }
-  .intro-stats-bar {
-    position: absolute;
-    bottom: 0; right: 0;
-    display: flex;
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
-    opacity: 0; animation: fadeIn 0.8s 1s forwards;
-  }
-  .intro-stat {
-    padding: 28px 48px;
-    border-right: 1px solid var(--border);
-    text-align: center;
-  }
-  .intro-stat:last-child { border-right: none; }
-  .intro-stat .n {
-    font-family: 'Playfair Display', serif;
-    font-size: 36px; font-weight: 900;
-    color: var(--text-primary); line-height: 1;
-  }
-  .intro-stat .n em { color: var(--teal); font-style: normal; }
-  .intro-stat .l {
-    font-size: 12px; font-weight: 400;
-    color: var(--text-muted); margin-top: 6px;
-    letter-spacing: 0.04em;
-  }
+  .section-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; display: block; }
+  .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 700; line-height: 1.2; margin-bottom: 0; }
+  .section-heading em { font-style: italic; color: var(--teal); }
 
-  /* ── CASE STUDIES INDEX ── */
-  .cs-index {
-    padding: 80px;
-    border-bottom: 1px solid var(--border);
-    background: var(--white);
-  }
-  .cs-index-inner { max-width: 1300px; margin: 0 auto; }
-  .cs-index-header {
-    display: flex; justify-content: space-between; align-items: baseline;
-    margin-bottom: 40px;
-  }
-  .cs-index-header h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 700;
-  }
-  .cs-index-header span {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--text-muted);
-    letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  .cs-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .cs-card {
-    background: var(--cream);
-    padding: 32px 28px;
-    text-decoration: none;
-    transition: background 0.25s;
-    position: relative;
-  }
-  .cs-card:hover { background: var(--white); }
-  .cs-card.active { background: var(--navy); }
-  .cs-card-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--teal);
-    letter-spacing: 0.1em; margin-bottom: 16px;
-    display: block;
-  }
-  .cs-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px; font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.3; margin-bottom: 10px;
-  }
-  .cs-card.active h3 { color: var(--white); }
-  .cs-card p {
-    font-size: 13px; font-weight: 300;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-  .cs-card.active p { color: rgba(255,255,255,0.5); }
-  .cs-tag {
-    display: inline-block;
-    margin-top: 16px;
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    padding: 4px 10px; border-radius: 20px;
-    background: rgba(0,180,160,0.08);
-    color: var(--teal); letter-spacing: 0.06em;
-  }
-  .cs-card.active .cs-tag {
-    background: rgba(0,180,160,0.15);
-  }
-  .cs-coming {
-    opacity: 0.45;
-    pointer-events: none;
-  }
+  /* HERO */
+  .hero { min-height: 100vh; background: var(--cream); display: flex; flex-direction: column; justify-content: center; padding: 140px 80px 100px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(0,180,160,0.06) 0%, transparent 65%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--border); }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(0,180,160,0.08); border: 1px solid rgba(0,180,160,0.2); border-radius: 40px; padding: 6px 16px 6px 10px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; width: fit-content; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.6s 0.1s forwards; }
+  .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); display: inline-block; animation: pulse 2s infinite; }
+  .hero-greeting { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; opacity: 0; animation: fadeUp 0.6s 0.2s forwards; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(56px, 8vw, 110px); font-weight: 900; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 28px; opacity: 0; animation: fadeUp 0.7s 0.3s forwards; }
+  .hero-name .first { display: block; color: var(--text-primary); }
+  .hero-name .last { display: block; color: transparent; -webkit-text-stroke: 2px var(--navy); }
+  .hero-role { display: flex; align-items: center; gap: 20px; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.6s 0.45s forwards; }
+  .hero-role-title { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 26px); font-weight: 400; font-style: italic; color: var(--teal); }
+  .hero-role-divider { width: 40px; height: 1px; background: var(--border); }
+  .hero-role-years { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); letter-spacing: 0.08em; }
+  .hero-bio { font-size: clamp(16px, 1.8vw, 19px); font-weight: 300; line-height: 1.85; color: var(--text-secondary); max-width: 640px; margin-bottom: 40px; opacity: 0; animation: fadeUp 0.6s 0.55s forwards; }
+  .hero-bio strong { color: var(--text-primary); font-weight: 600; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.6s 0.65s forwards; }
+  .hero-chips { display: flex; gap: 10px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.6s 0.75s forwards; margin-bottom:48px }
+  .chip { padding: 6px 14px; border-radius: 40px; font-size: 12px; font-weight: 500; color: var(--text-secondary); border: 1px solid var(--border); background: var(--white); transition: border-color 0.2s, color 0.2s; }
+  .chip:hover { border-color: var(--teal); color: var(--teal); }
+  .hero-stats { position: absolute; bottom: 0; right: 0; display: flex; border-top: 1px solid var(--border); border-left: 1px solid var(--border); opacity: 0; animation: fadeIn 0.8s 1s forwards; }
+  .hero-stat { padding: 24px 44px; border-right: 1px solid var(--border); text-align: center; }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat .n { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900; color: var(--text-primary); line-height: 1; }
+  .hero-stat .n em { color: var(--teal); font-style: normal; }
+  .hero-stat .l { font-size: 11px; font-weight: 400; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.04em; }
 
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--navy);
-    display: flex; flex-direction: column;
-    justify-content: flex-end;
-    padding: 120px 80px 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero-bg-grid {
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(0,180,160,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,180,160,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-  .hero-bg-glow {
-    position: absolute;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,180,160,0.12) 0%, transparent 70%);
-    top: -200px; right: -150px;
-    pointer-events: none;
-  }
-  .hero-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 12px; font-weight: 500;
-    color: var(--teal);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(52px, 7vw, 96px);
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    max-width: 900px;
-    margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--teal);
-  }
-  .hero-subtitle {
-    font-size: 18px; font-weight: 300;
-    color: rgba(255,255,255,0.55);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 60px;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-meta {
-    display: flex; gap: 48px; align-items: flex-start;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
-  .hero-meta-item label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    color: rgba(255,255,255,0.3);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    display: block; margin-bottom: 6px;
-  }
-  .hero-meta-item span {
-    font-size: 15px; font-weight: 500; color: var(--white);
-  }
-  .hero-stat-strip {
-    position: absolute; bottom: 0; right: 0;
-    display: flex;
-    opacity: 0; animation: fadeIn 1s 1.2s forwards;
-  }
-  .stat-block {
-    padding: 32px 48px;
-    border-left: 1px solid rgba(255,255,255,0.07);
-    border-top: 1px solid rgba(255,255,255,0.07);
-  }
-  .stat-block .num {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px; font-weight: 900;
-    color: var(--teal); line-height: 1;
-  }
-  .stat-block .label {
-    font-size: 12px; font-weight: 400;
-    color: rgba(255,255,255,0.4);
-    margin-top: 6px; letter-spacing: 0.04em;
-  }
+  /* WORK */
+  .work-section { background: var(--white); padding: 80px; border-bottom: 1px solid var(--border); }
+  .work-inner { max-width: 1300px; margin: 0 auto; }
+  .work-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 48px; }
+  .work-header-right { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border: 1px solid var(--border); }
+  .work-card { background: var(--cream); padding: 40px 36px 36px; text-decoration: none; display: flex; flex-direction: column; transition: background 0.25s; position: relative; overflow: hidden; }
+  .work-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--teal); transform: scaleY(0); transform-origin: bottom; transition: transform 0.3s; }
+  .work-card:hover { background: var(--white); }
+  .work-card:hover::after { transform: scaleY(1); }
+  .work-card-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .work-card-arrow { font-size: 18px; opacity: 0; transform: translateX(-8px); transition: opacity 0.25s, transform 0.25s; }
+  .work-card:hover .work-card-arrow { opacity: 1; transform: translateX(0); }
+  .work-card h3 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--text-primary); line-height: 1.25; margin-bottom: 12px; }
+  .work-card p { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; flex: 1; margin-bottom: 28px; }
+  .work-card-meta { display: flex; justify-content: space-between; align-items: flex-end; }
+  .work-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal); background: var(--teal-faint); padding: 4px 10px; border-radius: 20px; letter-spacing: 0.06em; }
+  .work-card-impact { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: var(--cream-mid); line-height: 1; }
 
-  /* ── SECTION WRAPPER ── */
-  .section {
-    padding: 100px 80px;
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-  .section-full {
-    padding: 100px 0;
-  }
-
-  .section-eyebrow {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    color: var(--teal);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 700;
-    line-height: 1.15;
-    color: var(--text-primary);
-    margin-bottom: 24px;
-  }
-  .section-title em { font-style: italic; color: var(--teal); }
-  .section-body {
-    font-size: 17px; font-weight: 300;
-    line-height: 1.85;
-    color: var(--text-secondary);
-    max-width: 700px;
-  }
-
-  /* ── CONTEXT BAND ── */
-  .context-band {
-    background: var(--navy);
-    padding: 80px;
-  }
-  .context-band-inner {
-    max-width: 1300px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px; align-items: start;
-  }
-  .context-band .section-title { color: var(--white); }
-  .context-band .section-body { color: rgba(255,255,255,0.55); }
-  .quote-block {
-    background: var(--navy-mid);
-    border-left: 3px solid var(--teal);
-    padding: 32px 36px;
-    border-radius: 2px;
-  }
-  .quote-block p {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; font-style: italic;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.65;
-    margin-bottom: 20px;
-  }
-  .quote-block cite {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: var(--teal);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    font-style: normal;
-  }
-
-  /* ── PROBLEM CARDS ── */
-  .problem-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 60px;
-  }
-  .problem-card {
-    background: var(--white);
-    padding: 40px 36px;
-    position: relative;
-    transition: background 0.3s;
-  }
-  .problem-card:hover { background: var(--cream); }
-  .problem-card .icon {
-    width: 44px; height: 44px;
-    background: var(--teal-faint);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 20px;
-    font-size: 20px;
-  }
-  .problem-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 19px; font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .problem-card p {
-    font-size: 14px; font-weight: 300;
-    line-height: 1.75;
-    color: var(--text-secondary);
-  }
-
-  /* ── ROLE STRIP ── */
-  .role-strip {
-    background: var(--cream-mid);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 48px 80px;
-  }
-  .role-strip-inner {
-    max-width: 1300px; margin: 0 auto;
-    display: flex; gap: 60px; align-items: center;
-  }
-  .role-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--text-muted);
-    letter-spacing: 0.12em; text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .role-tags { display: flex; flex-wrap: wrap; gap: 10px; }
-  .tag {
-    padding: 6px 16px;
-    border-radius: 40px;
-    font-size: 13px; font-weight: 500;
-    border: 1px solid var(--border-teal);
-    color: var(--teal);
-    background: var(--teal-faint);
-  }
-
-  /* ── PROCESS TIMELINE ── */
-  .process-section {
-    background: var(--navy);
-    padding: 100px 80px;
-  }
+  /* PROCESS */
+  .process-section { background: var(--navy); padding: 100px 80px; }
   .process-inner { max-width: 1300px; margin: 0 auto; }
-  .process-inner .section-title { color: var(--white); margin-bottom: 64px; }
-  .process-timeline {
-    display: flex;
-    gap: 0;
-    position: relative;
-  }
-  .process-timeline::before {
-    content: '';
-    position: absolute;
-    top: 28px; left: 0; right: 0;
-    height: 1px;
-    background: rgba(255,255,255,0.1);
-  }
-  .process-step {
-    flex: 1;
-    padding-top: 64px;
-    padding-right: 32px;
-    position: relative;
-    cursor: pointer;
-  }
-  .step-dot {
-    position: absolute;
-    top: 20px; left: 0;
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.15);
-    background: var(--navy);
-    transition: all 0.3s;
-  }
-  .process-step:hover .step-dot,
-  .process-step.active .step-dot {
-    border-color: var(--teal);
-    background: var(--teal);
-    box-shadow: 0 0 0 6px rgba(0,180,160,0.15);
-  }
-  .step-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; font-weight: 500;
-    color: var(--teal);
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-  }
-  .step-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 700;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 12px;
-  }
-  .step-body {
-    font-size: 14px; font-weight: 300;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.75;
-  }
+  .process-header { margin-bottom: 64px; }
+  .process-header .section-eyebrow { color: var(--teal); }
+  .process-header .section-heading { color: var(--white); margin-bottom: 16px; }
+  .process-header p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.5); max-width: 580px; line-height: 1.8; }
+  .process-steps { display: flex; gap: 0; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.08); }
+  .process-step { flex: 1; padding-top: 60px; padding-right: 28px; position: relative; }
+  .process-dot { position: absolute; top: 14px; left: 0; width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.15); background: var(--navy); transition: all 0.3s; }
+  .process-step:hover .process-dot { border-color: var(--teal); background: var(--teal); box-shadow: 0 0 0 6px rgba(0,180,160,0.12); }
+  .process-step-num { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .process-step h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 10px; line-height: 1.3; }
+  .process-step p { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.75; }
 
-  /* ── DESIGN DECISIONS ── */
-  .decisions-section { padding: 100px 80px; }
-  .decisions-inner { max-width: 1300px; margin: 0 auto; }
-  .decision-row {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 80px;
-    padding: 64px 0;
-    border-bottom: 1px solid var(--border);
-    align-items: start;
-  }
-  .decision-row:last-child { border-bottom: none; }
-  .decision-meta { position: sticky; top: 100px; }
-  .decision-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 72px; font-weight: 900;
-    color: var(--teal);
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-  .decision-meta h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px; font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 16px;
-  }
-  .decision-screen-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--teal);
-    letter-spacing: 0.1em; text-transform: uppercase;
-  }
-  .decision-content p {
-    font-size: 16px; font-weight: 300;
-    line-height: 1.85; color: var(--text-secondary);
-    margin-bottom: 24px;
-  }
-  .decision-content p:last-child { margin-bottom: 0; }
-  .decision-content strong { color: var(--text-primary); font-weight: 600; }
-  .insight-box {
-    background: var(--navy);
-    border-left: 3px solid var(--teal);
-    padding: 24px 28px;
-    border-radius: 2px;
-    margin-top: 28px;
-  }
-  .insight-box p {
-    font-size: 14px !important;
-    color: rgba(255,255,255,0.65) !important;
-    margin-bottom: 0 !important;
-  }
-  .insight-box strong { color: var(--teal) !important; }
+  /* PHILOSOPHY */
+  .philosophy-section { background: var(--cream-mid); padding: 100px 80px; border-bottom: 1px solid var(--border); }
+  .philosophy-inner { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .philosophy-left p { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--text-secondary); margin-top: 20px; }
+  .philosophy-right { display: flex; flex-direction: column; gap: 2px; }
+  .philosophy-card { background: var(--white); padding: 28px 32px; border: 1px solid var(--border); border-left: 3px solid transparent; transition: border-left-color 0.25s, background 0.25s; }
+  .philosophy-card:hover { border-left-color: var(--teal); background: var(--cream); }
+  .philosophy-card-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .philosophy-card h4 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+  .philosophy-card p { font-size: 13px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; }
 
-  /* ── SCREEN SHOWCASE ── */
-  .screens-section {
-    background: var(--navy-mid);
-    padding: 100px 80px;
-  }
-  .screens-inner { max-width: 1300px; margin: 0 auto; }
-  .screens-inner .section-title { color: var(--white); }
-  .screens-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 48px;
-  }
-  .screen-card {
-    background: var(--navy-light);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-  .screen-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
-  }
-  .screen-card.wide { grid-column: span 2; }
-  .screen-img {
-    width: 100%; display: block;
-    background: #1a2d40;
-  }
-  .screen-caption {
-    padding: 20px 24px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .screen-name {
-    font-size: 14px; font-weight: 500;
-    color: rgba(255,255,255,0.75);
-  }
-  .screen-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px; font-weight: 500;
-    color: var(--teal);
-    background: rgba(0,180,160,0.1);
-    padding: 4px 10px; border-radius: 20px;
-    letter-spacing: 0.08em;
-  }
+  /* EXPERTISE */
+  .expertise-section { background: var(--white); padding: 100px 80px; border-bottom: 1px solid var(--border); }
+  .expertise-inner { max-width: 1300px; margin: 0 auto; }
+  .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 48px; }
+  .expertise-card { background: var(--cream); padding: 36px 32px; transition: background 0.25s; }
+  .expertise-card:hover { background: var(--white); }
+  .expertise-icon { width: 44px; height: 44px; background: var(--teal-faint); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 18px; }
+  .expertise-card h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .expertise-card p { font-size: 13px; font-weight: 300; color: var(--text-secondary); line-height: 1.75; }
+  .expertise-tools { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-tag { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-muted); background: var(--cream-mid); padding: 3px 8px; border-radius: 20px; }
 
-  /* ── OUTCOMES ── */
-  .outcomes-section { padding: 100px 80px; }
-  .outcomes-inner { max-width: 1300px; margin: 0 auto; }
-  .outcomes-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    margin-top: 60px;
-  }
-  .outcome-card {
-    padding: 36px 32px;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--white);
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .outcome-card::before {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--teal);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s;
-  }
-  .outcome-card:hover::before { transform: scaleX(1); }
-  .outcome-card:hover {
-    border-color: var(--border-teal);
-    transform: translateY(-2px);
-  }
-  .outcome-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px; font-weight: 900;
-    color: var(--teal);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .outcome-label {
-    font-size: 14px; font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 10px;
-  }
-  .outcome-detail {
-    font-size: 13px; font-weight: 300;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
+  /* QUOTE */
+  .quote-section { background: var(--navy); padding: 80px; }
+  .quote-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .quote-mark { font-family: 'Playfair Display', serif; font-size: 80px; line-height: 0.6; color: var(--teal); opacity: 0.35; margin-bottom: 24px; display: block; }
+  .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 28px; }
+  .quote-attr { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--teal); letter-spacing: 0.12em; text-transform: uppercase; }
 
-  /* ── REFLECTION ── */
-  .reflection-section {
-    background: var(--navy);
-    padding: 100px 80px;
-  }
-  .reflection-inner {
-    max-width: 1300px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 80px;
-  }
-  .reflection-inner .section-title { color: var(--white); }
-  .reflection-inner .section-body { color: rgba(255,255,255,0.55); }
-  .reflection-list { margin-top: 32px; }
-  .reflection-item {
-    padding: 28px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    display: flex; gap: 20px; align-items: start;
-  }
-  .reflection-item:last-child { border-bottom: none; }
-  .r-icon {
-    width: 32px; height: 32px; flex-shrink: 0;
-    border-radius: 50%;
-    background: rgba(0,180,160,0.15);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; margin-top: 2px;
-  }
-  .r-text h4 {
-    font-size: 15px; font-weight: 600;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 6px;
-  }
-  .r-text p {
-    font-size: 14px; font-weight: 300;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.7;
-  }
+  /* CONTACT */
+  .contact-section { background: var(--navy); padding: 100px 80px 0; }
+  .contact-inner { max-width: 1300px; margin: 0 auto; }
+  .contact-eyebrow { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px; display: block; }
+  .contact-heading { font-family: 'Playfair Display', serif; font-size: clamp(40px, 6vw, 80px); font-weight: 900; color: var(--white); line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 48px; }
+  .contact-heading em { color: var(--teal); font-style: italic; }
+  .contact-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 80px; }
+  .contact-card { display: flex; align-items: center; gap: 20px; background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.07); padding: 28px 32px; text-decoration: none; border-radius: 2px; transition: border-color 0.25s; }
+  .contact-card:hover { border-color: rgba(0,180,160,0.4); }
+  .contact-icon { width: 44px; height: 44px; background: rgba(0,180,160,0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .contact-card-label { font-family: 'DM Mono', monospace; font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+  .contact-card-value { font-size: 16px; font-weight: 500; color: var(--white); }
+  .contact-footer-bar { border-top: 1px solid rgba(255,255,255,0.07); padding: 32px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
 
-  /* ── NEXT CASE STUDY CTA ── */
-  .cta-section {
-    padding: 100px 80px;
-    text-align: center;
-    border-top: 1px solid var(--border);
-  }
-  .cta-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px; color: var(--teal);
-    letter-spacing: 0.15em; text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-  .cta-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px; font-weight: 700;
-    margin-bottom: 40px;
-    line-height: 1.2;
-  }
-  .cta-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--navy);
-    color: var(--white);
-    padding: 16px 36px;
-    border-radius: 2px;
-    font-size: 14px; font-weight: 600;
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: background 0.3s;
-  }
-  .cta-btn:hover { background: var(--teal); }
-
-  /* ── LIGHTBOX ── */
-  .lightbox {
-    display: none;
-    position: fixed; inset: 0; z-index: 9999;
-    background: rgba(0,0,0,0.92);
-    align-items: center; justify-content: center;
-    padding: 40px;
-  }
-  .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 100%; max-height: 90vh;
-    border-radius: 4px;
-    object-fit: contain;
-  }
-  .lightbox-close {
-    position: absolute; top: 24px; right: 32px;
-    color: rgba(255,255,255,0.5);
-    font-size: 28px; cursor: pointer;
-    transition: color 0.2s;
-    background: none; border: none;
-  }
-  .lightbox-close:hover { color: var(--white); }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  .reveal {
-    opacity: 0; transform: translateY(32px);
-    transition: opacity 0.7s, transform 0.7s;
-  }
-  .reveal.visible {
-    opacity: 1; transform: translateY(0);
-  }
-
-  /* ── SCREEN PLACEHOLDER IMAGES ── */
-  .screen-mock {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #162436 0%, #1e3248 100%);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px;
-    font-family: 'DM Mono', monospace;
-    font-size: 12px;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.08em;
-    position: relative;
-    overflow: hidden;
-  }
-  .screen-mock::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(rgba(0,180,160,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,180,160,0.03) 1px, transparent 1px);
-    background-size: 24px 24px;
-  }
-  .screen-mock-icon { font-size: 32px; opacity: 0.3; }
-
-  /* Responsive */
+  /* RESPONSIVE */
   @media (max-width: 1024px) {
-    .hero { padding: 120px 40px 80px; }
-    .hero-stat-strip { position: relative; margin-top: 48px; }
-    .context-band-inner,
-    .reflection-inner { grid-template-columns: 1fr; gap: 48px; }
-    .problem-grid { grid-template-columns: 1fr 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr 1fr; }
-    .screens-grid { grid-template-columns: 1fr; }
-    .screen-card.wide { grid-column: span 1; }
-    .decision-row { grid-template-columns: 1fr; gap: 32px; }
     nav { padding: 20px 32px; }
-    .section, .decisions-section, .outcomes-section, .cta-section { padding: 80px 40px; }
-    .process-section, .screens-section, .reflection-section { padding: 80px 40px; }
-    .context-band, .role-strip { padding: 60px 40px; }
-    .portfolio-intro { padding: 120px 40px 80px; }
-    .cs-index { padding: 60px 40px; }
-    .cs-cards { grid-template-columns: 1fr 1fr; }
-    .intro-stats-bar { position: relative; margin-top: 48px; border: 1px solid var(--border); }
+    .hero { padding: 120px 40px 100px; }
+    .hero-stats { position: relative; margin-top: 48px; border: 1px solid var(--border); }
+    .work-section, .process-section, .philosophy-section, .expertise-section, .quote-section, .contact-section { padding: 80px 40px; }
+    .work-grid { grid-template-columns: 1fr; }
+    .philosophy-inner { grid-template-columns: 1fr; gap: 48px; }
+    .expertise-grid { grid-template-columns: 1fr 1fr; }
+    .contact-cards { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
-    .problem-grid { grid-template-columns: 1fr; }
-    .outcomes-grid { grid-template-columns: 1fr; }
-    .process-timeline { flex-direction: column; }
-    .process-timeline::before { display: none; }
-    .hero-stat-strip { flex-direction: column; }
-    .intro-stats-bar { flex-direction: column; }
     .nav-links { display: none; }
-    .cs-cards { grid-template-columns: 1fr; }
-    .intro-name { font-size: 56px; }
+    .hero { padding: 120px 24px 80px; }
+    .hero-name { font-size: 56px; }
+    .hero-stats { flex-direction: column; }
+    .work-section, .process-section, .philosophy-section, .expertise-section, .quote-section, .contact-section { padding: 64px 24px; }
+    .process-steps { flex-direction: column; gap: 40px; }
+    .process-steps::before { display: none; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .contact-cards { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -924,1795 +172,277 @@
 <div id="progress-bar"></div>
 
 <nav>
-  <a href="#intro" class="nav-logo">Deepak Arun</a>
+  <a href="index.html" class="nav-logo">Deepak Arun</a>
   <div class="nav-links">
-    <a href="#intro">About</a>
-    <a href="#case-studies">Work</a>
-    <a href="#cs04">Case Study</a>
-    <a href="mailto:deepakarun08@gmail.com">Contact</a>
+    <a href="#work">Work</a>
+    <a href="#process">Process</a>
+    <a href="#expertise">Expertise</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <img id="lightbox-img" src="" alt="">
-</div>
-
-<!-- ── PORTFOLIO INTRO ── -->
-<section class="portfolio-intro" id="intro">
-  <div class="intro-available">
-    <span class="dot"></span>
-    Available for new opportunities
-  </div>
-  <p class="intro-greeting">Hello, I'm</p>
-  <h1 class="intro-name">
+<!-- HERO -->
+<section class="hero" id="intro">
+  <div class="hero-badge"><span class="dot"></span>Available for new opportunities</div>
+  <p class="hero-greeting">Hello, I'm</p>
+  <h1 class="hero-name">
     <span class="first">Deepak</span>
     <span class="last">Arun</span>
   </h1>
-  <div class="intro-title-row">
-    <span class="intro-title">Principal UX Designer</span>
-    <span class="intro-title-divider"></span>
-    <span class="intro-title-years">17+ Years Experience</span>
+  <div class="hero-role">
+    <span class="hero-role-title">Principle UX Designer</span>
+    <span class="hero-role-divider"></span>
+    <span class="hero-role-years">17+ Years Experience</span>
   </div>
-  <p class="intro-bio">
-    I design <strong>enterprise-grade digital products</strong> that make complex workflows feel effortless. From retail allocation engines to healthcare dashboards — I work at the intersection of deep domain logic and human-centred design, turning messy stakeholder requirements into systems that people actually enjoy using.
+  <p class="hero-bio">
+    I design <strong>enterprise-grade digital products</strong> that make complex workflows feel effortless. From supply chain portals to retail allocation engines — I work at the intersection of <strong>deep domain logic and human-centred design</strong>, turning messy stakeholder requirements into systems people actually want to use.
   </p>
-  <div class="intro-actions">
-    <a href="#case-studies" class="btn-primary">View My Work ↓</a>
+  <div class="hero-actions">
+    <a href="#work" class="btn-primary">View My Work ↓</a>
     <a href="mailto:deepakarun08@gmail.com" class="btn-secondary">deepakarun08@gmail.com</a>
     <a href="tel:+919999619008" class="btn-secondary">+91 99996 19008</a>
   </div>
-  <div class="intro-skills-row">
-    <span class="skill-chip">UX Strategy</span>
-    <span class="skill-chip">Product Design</span>
-    <span class="skill-chip">Enterprise SaaS</span>
-    <span class="skill-chip">Design Systems</span>
-    <span class="skill-chip">Retail Tech</span>
-    <span class="skill-chip">Healthcare UX</span>
-    <span class="skill-chip">Figma</span>
-    <span class="skill-chip">Adobe XD</span>
-    <span class="skill-chip">FigJam</span>
-    <span class="skill-chip">Information Architecture</span>
+  <div class="hero-chips">
+    <span class="chip">UX Strategy</span>
+    <span class="chip">Enterprise SaaS</span>
+    <span class="chip">Oracle Redwood</span>
+    <span class="chip">Design Systems</span>
+    <span class="chip">Information Architecture</span>
+    <span class="chip">Supply Chain UX</span>
+    <span class="chip">Figma · Adobe XD</span>
+    <span class="chip">WCAG AA</span>
   </div>
-  <div class="intro-stats-bar">
-    <div class="intro-stat">
-      <div class="n">10<em>+</em></div>
-      <div class="l">Years Experience</div>
-    </div>
-    <div class="intro-stat">
-      <div class="n">4<em>+</em></div>
-      <div class="l">Case Studies</div>
-    </div>
-    <div class="intro-stat">
-      <div class="n">92<em>%</em></div>
-      <div class="l">Avg. Efficiency Gain</div>
-    </div>
-    <div class="intro-stat">
-      <div class="n">0<em>→</em>1</div>
-      <div class="l">Products Shipped</div>
-    </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="n">17<em>+</em></div><div class="l">Years Experience</div></div>
+    <div class="hero-stat"><div class="n">4<em>+</em></div><div class="l">Case Studies</div></div>
+    <div class="hero-stat"><div class="n">92<em>%</em></div><div class="l">Avg. Efficiency Gain</div></div>
   </div>
 </section>
 
-<!-- ── CASE STUDIES INDEX ── -->
-<section class="cs-index" id="case-studies">
-  <div class="cs-index-inner">
-    <div class="cs-index-header reveal">
-      <h2>Selected Work</h2>
-      <span>4 Case Studies · 2022–2025</span>
+<!-- SELECTED WORK -->
+<section class="work-section" id="work">
+  <div class="work-inner">
+    <div class="work-header reveal">
+      <div>
+        <span class="section-eyebrow" style="margin-bottom:8px;">Selected Work</span>
+        <h2 class="section-heading">Four projects that<br>define my practice.</h2>
+      </div>
+      <span class="work-header-right">2022 – 2025</span>
     </div>
-    <div class="cs-cards reveal">
-      <a href="#cs04" class="cs-card active">
-        <span class="cs-card-num">01</span>
+    <div class="work-grid reveal">
+
+      <a href="cs01-zams.html" class="work-card">
+        <div class="work-card-num"><span>Case Study 01</span><span class="work-card-arrow">→</span></div>
         <h3>ZAMS Customer Portal</h3>
-        <p>End-to-end order management portal — from web order creation to shipment tracking — across 7 user roles, integrated with Oracle EBS.</p>
-        <span class="cs-tag">Supply Chain · Oracle EBS · Multi-role</span>
+        <p>End-to-end order management platform integrating 7 user roles — from web order creation through sales approval, Oracle EBS integration, real-time shipment tracking, damage reporting and invoice management. Sole UX designer from blank page to production specification.</p>
+        <div class="work-card-meta">
+          <span class="work-tag">Supply Chain · Oracle EBS · Multi-role</span>
+          <span class="work-card-impact">7</span>
+        </div>
       </a>
-      <a href="#problem" class="cs-card">
-        <span class="cs-card-num">02</span>
+
+      <a href="cs02-aim.html" class="work-card">
+        <div class="work-card-num"><span>Case Study 02</span><span class="work-card-arrow">→</span></div>
         <h3>Allocation Intelligence Module</h3>
-        <p>Replacing Excel-based stock allocation with a multi-module enterprise web app for RedTag retail.</p>
-        <span class="cs-tag">Retail Tech · Enterprise</span>
+        <p>Replaced a fragile Excel-based stock allocation process with a multi-module enterprise web application for RedTag retail across the Gulf region. Allocation time dropped from 60 minutes to 5 — a 92% reduction — with zero manual errors post-launch.</p>
+        <div class="work-card-meta">
+          <span class="work-tag">Retail Tech · Enterprise · Oracle</span>
+          <span class="work-card-impact">92%</span>
+        </div>
       </a>
-      <a href="#cs02" class="cs-card">
-        <span class="cs-card-num">03</span>
+
+      <a href="cs03-warehouse.html" class="work-card">
+        <div class="work-card-num"><span>Case Study 03</span><span class="work-card-arrow">→</span></div>
         <h3>Warehouse Order Management Portal</h3>
-        <p>A customer-facing portal for seamless order placement, tracking, and fulfilment visibility built on Oracle Redwood Design System.</p>
-        <span class="cs-tag">Enterprise · Oracle · B2B</span>
+        <p>A customer-facing B2B portal delivering real-time order visibility across placement, fulfilment and shipment. Built on Oracle Redwood Design System with AI-assisted rapid prototyping, full device responsiveness, and stakeholder-aligned UX strategy.</p>
+        <div class="work-card-meta">
+          <span class="work-tag">B2B Portal · Oracle Redwood · Responsive</span>
+          <span class="work-card-impact">3×</span>
+        </div>
       </a>
-      <a href="#cs03" class="cs-card">
-        <span class="cs-card-num">04</span>
+
+      <a href="cs04-sales-accelerator.html" class="work-card">
+        <div class="work-card-num"><span>Case Study 04</span><span class="work-card-arrow">→</span></div>
         <h3>Sales Accelerator</h3>
-        <p>A sales enablement platform for multi-role reps — organise, search, share and manage content. Built to Oracle Redwood, WCAG AA, fully responsive.</p>
-        <span class="cs-tag">Sales Enablement · Multi-role · WCAG</span>
+        <p>Oracle sales enablement platform for reps to organise, discover and share content across 4 user roles. Cross-timezone collaboration with US team, WCAG AA compliance from day one, fully responsive from 1024–1920px, and complete email template ownership — design and production HTML.</p>
+        <div class="work-card-meta">
+          <span class="work-tag">Sales Enablement · WCAG AA · Multi-role</span>
+          <span class="work-card-impact">AA</span>
+        </div>
       </a>
+
     </div>
   </div>
 </section>
 
-<div style="background:var(--navy); padding:48px 80px; border-top:4px solid var(--teal);" id="cs04">
-  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-    <div>
-      <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Case Study 01 — Deep Dive</p>
-      <p style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--white); line-height:1.2;">ZAMS — <em style="font-style:italic; color:var(--teal);">Customer Portal · End-to-End Order Management</em></p>
-    </div>
-    <div style="font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">Conneqtion Group · Oracle EBS · Supply Chain</div>
-  </div>
-</div>
-
-<!-- CS04 HERO -->
-<section class="hero" style="min-height:85vh;">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-bg-glow" style="left:-150px; right:auto;"></div>
-  <p class="hero-eyebrow">Case Study 01 · Supply Chain Portal · Oracle EBS Integration · Multi-role UX</p>
-  <h1 class="hero-title">From Phone Calls<br>and Emails to a <em>Single Portal.</em></h1>
-  <p class="hero-subtitle">How I designed ZAMS — a comprehensive customer-facing order management portal that digitised the entire supply chain journey from web order creation through shipment tracking, damage reporting, and invoice management. Seven user roles. One coherent system. As the sole UX designer, I owned everything from discovery to wireframes.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <label>Client</label>
-      <span>ZAMS / Conneqtion Group</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Platform</label>
-      <span>Web Portal (Responsive)</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>My Role</label>
-      <span>Sole UX Designer</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Integration</label>
-      <span>Oracle EBS · ShipsGo API</span>
-    </div>
-  </div>
-  <div class="hero-stat-strip">
-    <div class="stat-block">
-      <div class="num">7</div>
-      <div class="label">User Roles Designed</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">11+</div>
-      <div class="label">Core Screens / Modules</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">0→1</div>
-      <div class="label">Greenfield Product</div>
-    </div>
-  </div>
-</section>
-
-<!-- CS04 CONTEXT -->
-<section class="section-full">
-  <div class="context-band">
-    <div class="context-band-inner">
-      <div>
-        <p class="section-eyebrow reveal">The Problem</p>
-        <h2 class="section-title reveal">A supply chain managed<br>through <em>emails and phone calls.</em></h2>
-        <p class="section-body reveal">ZAMS — a distribution business operating across the Gulf region — was managing its entire order lifecycle manually. Customers called or emailed to place orders. Sales teams printed documents and made phone calls to operations. Logistics updates were communicated through WhatsApp messages. Every handoff was a potential failure point, and there was no single source of truth for order status across the chain.</p>
-        <br>
-        <p class="section-body reveal" style="margin-top:16px;">The business needed a portal that would serve every participant — customers placing orders, sales reps reviewing them, operations teams posting to Oracle EBS, logistics tracking shipments, procurement handling returns — while keeping each role's experience focused and uncluttered. I was brought in as the sole UX designer to take this from zero to a fully specified, wireframed system ready for development.</p>
-      </div>
-      <div class="reveal">
-        <div class="quote-block">
-          <p>"Our customers had no visibility into their own orders once they were placed. They'd call us, we'd call the warehouse, the warehouse would call logistics. It was a game of telephone — and things got lost."</p>
-          <cite>— ZAMS Business Stakeholder, Discovery Session</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS04 PROBLEM CARDS -->
-<div style="max-width:1300px; margin:0 auto; padding:0 80px 0;">
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="icon">📞</div>
-      <h3>No Self-Service Channel</h3>
-      <p>Customers had no way to place, track, or manage their orders independently. Every interaction required contacting a salesperson — creating bottlenecks, delays, and frustration on both sides.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">🔗</div>
-      <h3>Broken Handoff Chain</h3>
-      <p>Orders moved through Customer → Sales → Operations → Logistics → Warehouse without any shared system. Each handoff relied on manual communication — email, calls, spreadsheets — and was a potential point of failure.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">📦</div>
-      <h3>Returns Had No Process</h3>
-      <p>When goods arrived damaged, there was no structured way to report or process returns. Customers had no mechanism to upload evidence, track approval status, or follow the credit memo process.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CS04 ROLE STRIP -->
-<div class="role-strip" style="margin-top:80px;">
-  <div class="role-strip-inner">
-    <span class="role-label">My Full Scope</span>
-    <div class="role-tags">
-      <span class="tag">Sole UX Designer</span>
-      <span class="tag">User Research</span>
-      <span class="tag">Competitive Analysis</span>
-      <span class="tag">User Interviews</span>
-      <span class="tag">Process Mapping</span>
-      <span class="tag">Information Architecture</span>
-      <span class="tag">Wireframing (11+ screens)</span>
-      <span class="tag">Multi-role UX Design</span>
-      <span class="tag">Oracle EBS Integration UX</span>
-      <span class="tag">Solution Design Document</span>
-    </div>
-  </div>
-</div>
-
-<!-- CS04 THE 7 ROLES -->
-<div style="background:var(--white); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:80px;">
-  <div style="max-width:1300px; margin:0 auto;">
-    <p class="section-eyebrow reveal">The 7 User Roles</p>
-    <h2 class="section-title reveal" style="margin-bottom:48px;">Seven distinct personas.<br><em>One coherent system.</em></h2>
-    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border);" class="reveal">
-      <div style="background:var(--navy); padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 01</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:8px;">Customer</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.65;">Places web orders, tracks shipments, views invoices, reports damage. Primary beneficiary of the portal.</p>
-      </div>
-      <div style="background:var(--cream); padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 02</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Sales / Sales Manager</h4>
-        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Reviews and approves web orders, can create orders on behalf of customers, manages amendments.</p>
-      </div>
-      <div style="background:var(--cream); padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 03</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Operations</h4>
-        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Posts approved orders to Oracle EBS, creates sales orders, manages proforma invoices and shipment details.</p>
-      </div>
-      <div style="background:var(--cream); padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 04</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Procurement</h4>
-        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Reviews and approves damage/return requests. Coordinates RMA processing with operations and EBS.</p>
-      </div>
-      <div style="background:var(--cream); padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 05</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Logistics</h4>
-        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Manages shipping arrangements, uploads BOL and container documents, tracks real-time shipment via ShipsGo API.</p>
-      </div>
-      <div style="background:var(--cream); padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 06</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Finance</h4>
-        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Uploads credit memos and billing documents to the portal following EBS processing of approved returns.</p>
-      </div>
-      <div style="background:var(--navy); padding:28px 24px; grid-column:span 2;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 07</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:8px;">Admin</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.65;">Full system access — manages users, assigns roles, configures container settings, manages notification templates, views error logs. The control layer that keeps the entire portal operational.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CS04 PROCESS -->
-<section class="process-section">
-  <div class="process-inner">
-    <p class="section-eyebrow reveal">My UX Process</p>
-    <h2 class="section-title reveal">Designing a system I had to<br><em>discover from scratch.</em></h2>
-    <div class="process-timeline reveal">
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">01 — Discover</div>
-        <div class="step-title">Research & Interviews</div>
-        <div class="step-body">Conducted user interviews with each of the 7 roles — customers, sales reps, ops teams, logistics coordinators. Mapped the current manual process flow to understand every handoff, pain point and workaround in the existing system.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">02 — Analyse</div>
-        <div class="step-title">Competitive Analysis</div>
-        <div class="step-body">Analysed comparable B2B order management portals and supply chain platforms. Identified interaction patterns for order status timelines, multi-role dashboards, and damage reporting flows that could be adapted for ZAMS's context.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">03 — Map</div>
-        <div class="step-title">Process Flow Design</div>
-        <div class="step-body">Created four detailed cross-functional process flows: Customer Workflow, Sales Workflow, Operations Workflow, and Sales Return Workflow. These became the backbone of the entire UX architecture and were validated with stakeholders before any screen design began.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">04 — Design</div>
-        <div class="step-title">Wireframe All Screens</div>
-        <div class="step-body">Designed 11+ core screens with complete field-level specifications — dashboard, web order creation, sales order overview, track shipment, price list, sales invoice, report damage, containerisation settings, manage users, manage notifications, and error notification.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">05 — Document</div>
-        <div class="step-title">Solution Design Document</div>
-        <div class="step-body">Authored the complete Solution Design Document — a 55-page specification covering all process flows, field-level validations, role-based access rules, API integration points (Oracle EBS, ShipsGo), and system architecture. A reference document for the entire development team.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS04 DESIGN DECISIONS -->
-<section class="decisions-section">
-  <div class="decisions-inner">
-    <p class="section-eyebrow reveal">Key Design Decisions</p>
-    <h2 class="section-title reveal">Five decisions that shaped<br>a <em>zero-to-one system.</em></h2>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">01</div>
-        <h3>A Dashboard That Answers "What Needs Me Right Now?"</h3>
-        <div class="decision-screen-label">Dashboard · All Roles · Contextual Tiles</div>
-      </div>
-      <div class="decision-content">
-        <p>When I started designing the dashboard, the stakeholder request was straightforward: "a page with all the key metrics." But when I mapped what each role actually needed to see when they logged in, it became clear that a generic metrics dashboard would serve no one well. A customer logging in wants to know if their shipments are on track. An operations user needs to see pending approvals. An admin needs to know if any error notifications have fired.</p>
-        <p>I designed a <strong>role-aware dashboard</strong> where the tile set, notification stream, and action areas adapt to the logged-in user. Every role sees their specific KPIs — Total Orders, Pending Validations, Blocked Styles — and a "My Contact" panel showing their assigned salesperson with direct call/email actions. The "Start New Allocation" CTA is prominent for customers but completely absent for operations users who never create orders. The dashboard isn't a homepage — it's a <strong>command centre tuned to each role's primary job.</strong></p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "I asked every user we interviewed the same question: 'What's the first thing you check when you start your workday?' The answers were completely different for each role — and those answers became the tile architecture of the dashboard."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">02</div>
-        <h3>Container Auto-Suggestion — Designing for a Constraint Nobody Had Digitised</h3>
-        <div class="decision-screen-label">Web Order Creation · Container Logic</div>
-      </div>
-      <div class="decision-content">
-        <p>One of the most surprising discoveries from user interviews was that the current Excel-based order process required customers to manually verify whether their selected items would physically fit inside a shipping container. There was no tool, no calculation — just experience and guesswork. Occasionally they'd over-order, the warehouse couldn't load, and the entire shipment had to be rearranged at cost.</p>
-        <p>I designed an <strong>automatic container suggestion engine</strong> as part of the order creation flow. As the customer adds items, the system calculates total weight and volume in real time, compares against the Container Master Table settings for each supplier, and displays visual fill indicators — showing percentage of container weight and volume used. A "Suggested Container Size" badge updates dynamically. If the customer is approaching capacity, they see it before they submit, not after the warehouse calls them.</p>
-        <p>This wasn't just a UX feature — it was a <strong>supply chain intelligence layer</strong> that had never existed in the manual process, and it became one of the most valued features in stakeholder review sessions.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "The most impactful UX work on this project wasn't a navigation redesign or a visual polish pass. It was turning an invisible logistics constraint — container capacity — into a real-time visual feedback system. That's where design created real business value."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">03</div>
-        <h3>A 9-Milestone Order Status Timeline — Not a Status Badge</h3>
-        <div class="decision-screen-label">Sales Order Overview · Track Shipment · Status Architecture</div>
-      </div>
-      <div class="decision-content">
-        <p>Early in the process, the team assumed order status could be represented with simple badges — "In Progress," "Shipped," "Delivered." But when I mapped the actual order journey with the operations team, we counted nine meaningful milestones between order creation and delivery: Web Order Created → Web Order Approved → Sales Order Generated → Order Booked → Estimated Ship Date → Estimated Arrival Date → Good Ready Date → Actual Departure → Actual Arrival.</p>
-        <p>Compressing nine real events into three generic labels would have destroyed the transparency the portal was meant to provide. I designed a <strong>horizontal milestone timeline</strong> on both the Sales Order Overview page and the Track Shipment screen — each milestone shows its date when reached, and unfilled milestones show what's upcoming. Customers can see exactly where in the journey their order sits, not just a vague status badge.</p>
-        <p>Additionally, the Track Shipment screen integrated a <strong>real-time container map</strong> via ShipsGo API — giving customers GPS-level visibility into shipments in transit.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "The status timeline decision came directly from a user interview where a customer said 'I don't want to know that my order is In Progress — I want to know where in the process it actually is.' That one sentence shaped a core interaction pattern across the entire portal."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">04</div>
-        <h3>Role-Differentiated Document Access — Same Page, Different Permissions</h3>
-        <div class="decision-screen-label">Sales Invoice · Supporting Documents · Role-based Access</div>
-      </div>
-      <div class="decision-content">
-        <p>The Sales Invoice Detail page needed to serve two very different user types simultaneously: customers who should only be able to view and download shipping documents, and operations users who needed to both view existing documents and upload new billing documents with drag-and-drop functionality. Building two separate invoice pages would have doubled the development surface and created maintenance complexity.</p>
-        <p>I designed a <strong>single invoice page with role-aware document sections</strong>. Both roles see the "Shipping Documents" section with identical view/download capability. But the operations view adds a second "Billing Documents" section and an "Upload Documents" drag-and-drop area with file type categorisation. The page structure is identical — what changes is what's shown. This pattern repeated across multiple screens in the portal, and I documented it as a design principle in the Solution Design Document: <strong>"Same URL, role-adaptive content."</strong></p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "Every time I was tempted to build separate pages for different roles, I forced myself to ask: is this actually a different task, or just a different permission level on the same task? Usually it was the latter, and that distinction saved significant development complexity."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">05</div>
-        <h3>Notification Templates as a User-Configurable System</h3>
-        <div class="decision-screen-label">Manage Notifications · Admin Screen · Template Engine</div>
-      </div>
-      <div class="decision-content">
-        <p>The portal needed to send triggered email notifications at over a dozen workflow events — order submitted, order approved, order rejected, shipment ready, damage report received, RMA approved, and more. The standard approach would have been to hardcode these notification templates in the backend and let developers manage them. I pushed back on this for a specific reason: business workflows evolve, and hardcoded templates become bottlenecks.</p>
-        <p>I designed a <strong>fully configurable notification template management screen</strong> for admin users. Admins can create, edit, and delete notification templates by specifying Subject, Target Role, and Email Body. Crucially, the body supports dynamic <strong>variable tags</strong> — #WEB_ORDER_NUMBER#, #CUSTOMER_NAME#, #SALES_NAME#, #LINK#, #TIMESTAMP# — which the system replaces with real-time values when triggered. Admins can see a reference panel of all available tags alongside the editor.</p>
-        <p>This turned a potential developer bottleneck into a self-service admin capability — meaning the business could update notification copy, add new notification types, or adjust role targeting without a single development sprint.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "Designing the notification system as admin-configurable rather than developer-hardcoded was a product thinking decision that came from understanding the client's team capacity. They had limited dev resources post-launch. Every feature I could make self-service was one fewer support ticket."</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CS04 WIREFRAME SHOWCASE -->
-<section class="screens-section">
-  <div class="screens-inner">
-    <p class="section-eyebrow reveal">Wireframe Walkthrough</p>
-    <h2 class="section-title reveal">The portal, <em>screen by screen.</em></h2>
-    <p style="color:rgba(255,255,255,0.4); font-size:14px; margin-top:12px; margin-bottom:16px; font-weight:300;" class="reveal">All wireframes from the Solution Design Document — 11 modules across 7 user roles. High-fidelity screens available on request.</p>
-
-    <!-- Module Overview Cards -->
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px;" class="reveal">
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 01</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Dashboard</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Real-time KPI tiles (Total Orders, Pending Validations, Track Shipments, Invoiced Orders), notifications panel, quick-track widget, sales invoice summary and My Contact card. Role-adaptive for all 7 user types.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">All Roles</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 02</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Web Order Creation</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Order Details header with organisation, shipment type, PO number and port of discharge. Item list table with auto-populated pricing from EBS, MOQ enforcement, container fill visualisation with progress bars, and estimated shipment/arrival dates.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Sales</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Operations</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 03</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Web Orders List</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Global search, status filter (Draft/Pending/Approved by Sales/Ops/Closed), date range filter, sortable table with row-level Edit/Duplicate/Delete actions. Create Web Order CTA visible only for Customer and Sales roles.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Sales</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 04</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Sales Order Overview</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Read-only order details with the 7-milestone Sales Order Status timeline (SO Generated → Order Booked → Est. Ship → Est. Arrival → Good Ready → Actual Departure → Actual Arrival). Item list, container fill visualisation, comments thread.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">All Internal Roles</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 05</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Track Shipment</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Search by booking ref, container number or invoice number. Shipment details (carrier, ETA/ETD, container list), 9-step order status timeline, real-time map via ShipsGo API integration with carrier type, container, and booking reference inputs.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">All Roles</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 06</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Sales Invoice & Documents</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Invoice list with vessel, container, ETD/ETA. Invoice detail with item table and Supporting Documents — Customer view: Shipping Docs only. Operations view: Shipping + Billing Docs + drag-and-drop upload with file categorisation.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Operations</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 07</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Report Damage (Returns)</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Damage list with invoice filter, Report New Damage CTA. Create flow: invoice selection auto-populates items from EBS, quantity to return + reason dropdown + proof of damage image upload. Procurement Approve/Reject/Amend flow with comments. RMA creation in EBS by operations.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Procurement</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Operations</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 08</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Price List</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Customer-specific active items from Oracle EBS price list. Filterable by Operating Unit and Item Code. Read-only table showing Item Code, Description, UOM, Unit Selling Price, Currency, Brand, Shelf Life, MOQ (Warehouse & Factory). Export to Excel.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Sales</span>
-        </div>
-      </div>
-
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Modules 09–11</div>
-        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Admin Modules</h4>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;"><strong style="color:rgba(255,255,255,0.7);">Manage Users</strong> — Create, edit, activate/deactivate users across all 7 roles. MFA email trigger on creation.<br><br><strong style="color:rgba(255,255,255,0.7);">Containerisation Settings</strong> — Warehouse and Factory container specs with volume/weight limits, supplier-level configuration.<br><br><strong style="color:rgba(255,255,255,0.7);">Manage Notifications</strong> — Dynamic email template engine with role-targeting and variable tags.</p>
-        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
-          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Admin Only</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- HiFi callout -->
-    <div style="margin-top:40px; background:rgba(0,180,160,0.08); border:1px solid rgba(0,180,160,0.2); border-radius:4px; padding:28px 32px; display:flex; align-items:center; gap:24px;" class="reveal">
-      <div style="font-size:28px; flex-shrink:0;">🎨</div>
-      <div>
-        <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">High-Fidelity Screens</p>
-        <p style="font-size:14px; font-weight:300; color:rgba(255,255,255,0.6); line-height:1.7;">High-fidelity designs based on these wireframes are available. The wireframes in the Solution Design Document define complete field-level specifications, validation rules, and role-based access logic — the visual design layer maps directly to this structural foundation.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CS04 OUTCOMES -->
-<section class="outcomes-section">
-  <div class="outcomes-inner">
-    <p class="section-eyebrow reveal">Outcomes & Impact</p>
-    <h2 class="section-title reveal">What ZAMS Portal<br><em>made possible.</em></h2>
-    <div class="outcomes-grid reveal">
-      <div class="outcome-card">
-        <div class="outcome-num">7</div>
-        <div class="outcome-label">Roles, One System</div>
-        <div class="outcome-detail">Customer, Sales, Sales Manager, Operations, Procurement, Logistics, Finance and Admin — all served within a single coherent portal with role-adaptive content.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">0→1</div>
-        <div class="outcome-label">Greenfield Delivery</div>
-        <div class="outcome-detail">Delivered a complete, development-ready UX specification for a product that had never existed — from blank page to a 55-page Solution Design Document with wireframes for every module.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">9</div>
-        <div class="outcome-label">Order Milestones Visible</div>
-        <div class="outcome-detail">Customers gained real-time visibility across 9 supply chain milestones — replacing phone calls and emails with self-service transparency for the first time.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">∞</div>
-        <div class="outcome-label">Configurable Notifications</div>
-        <div class="outcome-detail">The admin-configurable notification template system eliminated the need for developer involvement in email content changes — a self-service capability that scales with the business.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS04 REFLECTION -->
-<section class="reflection-section">
-  <div class="reflection-inner">
-    <div>
-      <p class="section-eyebrow reveal">Reflection</p>
-      <h2 class="section-title reveal">What building<br><em>from zero taught me.</em></h2>
-      <p class="section-body reveal">ZAMS was the most end-to-end UX engagement I've worked on — from blank-slate discovery through to a production-ready specification document. The lessons were proportionally deep.</p>
-    </div>
-    <div class="reflection-list reveal">
-      <div class="reflection-item">
-        <div class="r-icon">🗺️</div>
-        <div class="r-text">
-          <h4>Process mapping is design work</h4>
-          <p>The four cross-functional workflow diagrams — Customer, Sales, Operations, Returns — were the most impactful design deliverables on this project. Getting the process right before touching any screen design meant every subsequent UX decision had a solid foundation. If I'd skipped directly to wireframes, I'd have designed the wrong screens confidently.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">🧩</div>
-        <div class="r-text">
-          <h4>Role complexity is best resolved early, not patched late</h4>
-          <p>With 7 distinct user roles, there was constant temptation to design for the "primary" user (the customer) and adapt the rest later. Every time I followed that shortcut in early sketches, I'd hit a conflict with an internal role's needs that required rework. Designing all 7 role journeys in parallel — even roughly — was the right call.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">⚙️</div>
-        <div class="r-text">
-          <h4>The container auto-suggestion was the most underestimated feature</h4>
-          <p>It took me a while to convince stakeholders this was worth the complexity. They saw it as a "nice to have." After two rounds of review, when they realised it would eliminate an entire class of operational errors that had been costing them money, it became a must-have. Sometimes the designer's job is to make the business see the value in their own problems.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">📄</div>
-        <div class="r-text">
-          <h4>A good SDD is a design artefact, not just a technical document</h4>
-          <p>Writing the 55-page Solution Design Document forced me to think through every edge case, every validation rule, every empty state and error condition. The act of specifying it in writing surfaced about 30% of the design problems I'd missed in wireframes alone. I now treat documentation as the final phase of design thinking, not an afterthought.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ── CS04→CS01 BRIDGE ── -->
-<section class="cta-section" style="background:var(--cream-mid);">
-  <p class="cta-label reveal">Up Next · Case Study 02</p>
-  <h2 class="cta-title reveal">Allocation Intelligence Module —<br><em style="font-style:italic; color:var(--teal);">RedTag Retail Automation</em></h2>
-  <a href="#problem" class="cta-btn reveal">Read Case Study 02 ↓</a>
-</section>
-
-<!-- ── CASE STUDY DIVIDER ── -->
-<div style="background:var(--navy); padding:48px 80px; border-top: 4px solid var(--teal);">
-  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center;">
-    <div>
-      <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Case Study 02 — Deep Dive</p>
-      <p style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--white); line-height:1.2;">Allocation Intelligence Module <em style="font-style:italic; color:var(--teal);">— AIM</em></p>
-    </div>
-    <div style="font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">RedTag · BMA International</div>
-  </div>
-</div>
-
-
-<section class="hero">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-bg-glow"></div>
-  <p class="hero-eyebrow">Case Study 02 · Enterprise UX · Retail Allocation</p>
-  <h1 class="hero-title">From 60 Minutes<br>of Excel <em>Hell</em><br>to 5 Minutes Flat.</h1>
-  <p class="hero-subtitle">How I designed AIM — the Allocation Intelligence Module — a complex multi-module web application that eliminated a fragile, manual stock distribution process across RedTag's retail network.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <label>Client</label>
-      <span>RedTag / BMA International</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>My Role</label>
-      <span>Lead UX Designer (Solo)</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Platform</label>
-      <span>Web Application</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Domain</label>
-      <span>Retail Allocation · Enterprise SaaS</span>
-    </div>
-  </div>
-  <div class="hero-stat-strip">
-    <div class="stat-block">
-      <div class="num">92%</div>
-      <div class="label">Time Reduction</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">60→5</div>
-      <div class="label">Minutes per Allocation</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">0</div>
-      <div class="label">Manual Errors Post-Launch</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTEXT ── -->
-<section class="section-full" id="problem">
-  <div class="context-band">
-    <div class="context-band-inner">
-      <div>
-        <p class="section-eyebrow reveal">The Problem</p>
-        <h2 class="section-title reveal">A business running on<br><em>spreadsheets and luck.</em></h2>
-        <p class="section-body reveal">RedTag — a multi-brand fashion retailer operating across the Gulf region — managed stock allocation across dozens of stores using Excel. Every morning, the allocation team would manually pull inventory data, apply distribution logic by hand, and push quantities to stores. One wrong formula, one outdated lookup, one missed row: and the wrong products ended up in the wrong stores.</p>
-        <br>
-        <p class="section-body reveal" style="margin-top:16px;">The business needed a system that could encode their complex allocation logic — product hierarchies, country splits, sales factor weightings, buffer calculations — into a reliable, repeatable workflow. I was brought in as the sole UX designer to make that system something analysts would actually want to use every day.</p>
-      </div>
-      <div class="reveal">
-        <div class="quote-block">
-          <p>"Every allocation was a risk. If someone made a formula error in Excel, we wouldn't know until stock had already moved. By then, fixing it cost us days."</p>
-          <cite>— Allocation Manager, RedTag (Stakeholder Brief)</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROBLEM CARDS ── -->
-<div style="max-width:1300px; margin:0 auto; padding:0 80px 0;">
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="icon">⏱️</div>
-      <h3>60+ Minutes Daily</h3>
-      <p>Each allocation run required manually copying and transforming data across multiple Excel files. Repetitive, slow, and entirely dependent on individual attention.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">⚠️</div>
-      <h3>Zero Error Safety Net</h3>
-      <p>A mistyped formula or a stale reference wouldn't surface until after stock had moved. There was no validation layer, no alerts, no blocked styles — no guardrails.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">🧩</div>
-      <h3>Hidden Complexity</h3>
-      <p>The allocation logic involved product hierarchies (H1–H4), country-level splits, sales factor configurations, and buffer percentages — none of it visible, auditable, or transferable.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ── ROLE STRIP ── -->
-<div class="role-strip" style="margin-top:80px;">
-  <div class="role-strip-inner">
-    <span class="role-label">My Role</span>
-    <div class="role-tags">
-      <span class="tag">Sole UX Designer</span>
-      <span class="tag">UX Strategy</span>
-      <span class="tag">Information Architecture</span>
-      <span class="tag">Interaction Design</span>
-      <span class="tag">UI Design</span>
-      <span class="tag">Stakeholder Workshops</span>
-      <span class="tag">Design System</span>
-    </div>
-  </div>
-</div>
-
-<!-- ── PROCESS ── -->
+<!-- UX PROCESS -->
 <section class="process-section" id="process">
   <div class="process-inner">
-    <p class="section-eyebrow reveal">My Process</p>
-    <h2 class="section-title reveal">How I approached a<br><em>system I didn't know.</em></h2>
-    <div class="process-timeline reveal">
+    <div class="process-header reveal">
+      <span class="section-eyebrow">My UX Process</span>
+      <h2 class="section-heading">A process built around<br><em>understanding before designing.</em></h2>
+      <p>I follow a user-centred design approach grounded in evidence, not assumption. Every project begins with understanding the problem deeply — through research, stakeholder alignment, and domain immersion — before a single frame is drawn. Iteration is baked in, not bolted on.</p>
+    </div>
+    <div class="process-steps reveal">
       <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">01 — Understand</div>
-        <div class="step-title">Domain Immersion</div>
-        <div class="step-body">I sat with the allocation team and watched them work through a live Excel run. I needed to understand the mental model before I could design around it. I mapped every formula to a business decision.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">02 — Define</div>
-        <div class="step-title">Flow Architecture</div>
-        <div class="step-body">I identified the core workflow: brand selection → order type → hierarchy selection → country configuration → item data sheet. Everything else was a module within this spine.</div>
+        <div class="process-dot"></div>
+        <div class="process-step-num">01 — Discover</div>
+        <h4>Research &amp; Empathy</h4>
+        <p>User interviews, contextual inquiry, competitive analysis, and stakeholder workshops surface the real problem — not the assumed one. I map mental models and pain points before any solution thinking begins.</p>
       </div>
       <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">03 — Ideate</div>
-        <div class="step-title">Competing Approaches</div>
-        <div class="step-body">I explored a single long-form page vs. a wizard vs. a canvas approach. A wizard won because it enforced decision sequence — you can't configure country splits before choosing a hierarchy.</div>
+        <div class="process-dot"></div>
+        <div class="process-step-num">02 — Define</div>
+        <h4>Synthesis &amp; Framing</h4>
+        <p>Research findings are synthesised into affinity maps, user journey maps, and clear "How Might We" statements — producing a shared design brief that aligns business goals with user needs.</p>
       </div>
       <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">04 — Design</div>
-        <div class="step-title">Component-Led UI</div>
-        <div class="step-body">Built a dark-sidebar enterprise system with a consistent 3-step progress model, dependent dropdowns, multi-select filters, and a configurable data table — all from scratch.</div>
+        <div class="process-dot"></div>
+        <div class="process-step-num">03 — Design</div>
+        <h4>Structure Before Pixels</h4>
+        <p>Information architecture and interaction flows are validated before visual design begins. Wireframes expose structural problems cheaply. Fidelity increases only once the logic is sound.</p>
       </div>
       <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">05 — Validate</div>
-        <div class="step-title">Stakeholder Reviews</div>
-        <div class="step-body">Ran working sessions with the allocation manager and business team. Iterated on the selection module and item data sheet column configuration based on direct feedback.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── DESIGN DECISIONS ── -->
-<section class="decisions-section" id="decisions">
-  <div class="decisions-inner">
-    <p class="section-eyebrow reveal">Key Design Decisions</p>
-    <h2 class="section-title reveal">Five choices that made<br>the <em>difference.</em></h2>
-
-    <!-- Decision 1 -->
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">01</div>
-        <h3>The 3-Step Wizard Over a Single Form</h3>
-        <div class="decision-screen-label">Order Type → Selection → Data Sheet</div>
-      </div>
-      <div class="decision-content">
-        <p>My first instinct — and the stakeholders' initial request — was a single long configuration page. It seemed efficient. But when I mapped all the inputs together, I realised the form had <strong>hard dependencies</strong>: you couldn't configure country splits before setting a product hierarchy. You couldn't reach item data without completing selection first. The sequence wasn't arbitrary — it was logical.</p>
-        <p>I introduced a 3-step wizard with a persistent progress stepper at the top. Each step is self-contained, validated before proceeding, and clearly labelled: <strong>Order Type → Selection Module → Item Data Sheet</strong>. This eliminated the "blank stare" problem where users didn't know what to fill first, and it naturally enforced data integrity — the system couldn't generate an allocation from incomplete configuration.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "The wizard pattern wasn't just a UX choice — it was a data integrity decision. Enforcing sequence in the UI meant fewer validation errors in the back end. I aligned the user flow with the technical dependency graph."</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Decision 2 -->
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">02</div>
-        <h3>Dependent Hierarchy Filtering with Live Context Hints</h3>
-        <div class="decision-screen-label">Selection Module — Country Split</div>
-      </div>
-      <div class="decision-content">
-        <p>The product hierarchy had four levels: Division (H1) → Department (H2) → Sub-Department (H3) → Category (H4). In Excel, analysts had to cross-reference lookup tables manually to understand what was valid at each level. In the new system, I designed <strong>cascading dropdowns</strong> where lower levels are locked until the higher level is selected.</p>
-        <p>I added a small amber contextual hint: "Lower hierarchy levels are enabled based on higher-level selection." This tiny detail — which I debated removing for being "obvious" — turned out to be one of the most praised elements in stakeholder reviews. <strong>First-time users read it. Experienced users ignored it.</strong> That's exactly what good hint text does.</p>
-        <p>Multi-select chip tags for department and category selections (BOY, GIR, BOA, BUL, BAG, HBG) also let analysts see their configuration at a glance without re-opening dropdowns — reducing cognitive load on a data-dense screen.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "I spent real time on the contextual hint copy. It needed to be informative without being condescending. The principle I followed: write for the user on day three, not day one."</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Decision 3 -->
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">03</div>
-        <h3>Country Split Configured on the Same Screen as Hierarchy</h3>
-        <div class="decision-screen-label">Selection Module — 3-Panel Layout</div>
-      </div>
-      <div class="decision-content">
-        <p>This was the hardest layout decision I made. Country split configuration (which countries, which split granularity, which sales factor), product hierarchy, and calculation control (buffer %, final AVG%) are <strong>three interdependent configurations</strong>. Putting them on separate steps would have created constant back-and-forth. Putting them all on one screen risked overwhelming users.</p>
-        <p>I landed on a <strong>3-panel horizontal layout</strong> within a single wizard step: Product Hierarchy on the left, Country Split Configuration in the centre, Calculation Control on the right. This mirrored how analysts actually think — they consider hierarchy and country split simultaneously. The layout externalised that mental model into the interface.</p>
-        <p>The "Split by" toggles (Item Style, Range, Color) were a specific decision to represent a mutually-inclusive selection — not radio buttons, not checkboxes, but toggles — because analysts sometimes needed multiple split granularities enabled together.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "I mapped the screens against the analysts' actual thought sequence before I drew a single frame. Layout decisions should reflect cognition, not just aesthetics."</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Decision 4 -->
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">04</div>
-        <h3>A Configurable Data Table with Persistent Column Visibility</h3>
-        <div class="decision-screen-label">Item Data Sheet</div>
-      </div>
-      <div class="decision-content">
-        <p>The Item Data Sheet was where the allocation actually lived — 50 items, 25 eligible stores, 2,000 suggested allocations, and 16 blocked items surfaced in a summary bar at the top. The table itself had 25+ columns spanning fixed headers (PACK CODE, ITEM CODE, H1–H4, STORE GRID, PROMO FLAG) and optional attribute columns (ATTR1–4).</p>
-        <p>Putting 25+ columns in front of a user with no control is a recipe for overwhelm. I designed a <strong>left-panel column visibility manager</strong> with toggle-eye icons, split into "Display Headers (Fixed)" and "Optional Headers." Users could personalise what they saw without losing data — and a <strong>Save Template</strong> action preserved their configuration for future sessions.</p>
-        <p>The summary tiles (Total Items, Eligible Stores, Suggested Allocations, Blocked Items) at the top gave users <strong>instant allocation health awareness</strong> before they even looked at rows. The red "Blocked Items" tile was intentionally alarming — those needed immediate attention.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "The summary tiles were designed to answer the first question every analyst asks when they land on a data sheet: 'Is this allocation healthy?' I wanted that answer visible in under a second, without reading a single row."</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Decision 5 -->
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">05</div>
-        <h3>The Dashboard as a Control Tower, Not a Welcome Screen</h3>
-        <div class="decision-screen-label">Dashboard</div>
-      </div>
-      <div class="decision-content">
-        <p>The dashboard could have been a simple landing page with a "Start" button. Instead, I designed it as an <strong>operational control tower</strong>. Three status tiles at the top — Benchmarks Updated (12), Pending Validations (7, with 5 urgent), and Blocked Styles (3, +3 this week) — surface the health of the entire allocation pipeline before any action is taken.</p>
-        <p>The Recent Allocations table showed real-time allocation history by type, brand, date, and status — including Error states, which are as important to surface as Completed ones. An analyst could return to the dashboard after lunch and immediately know: has anything broken? what's pending? what needs me?</p>
-        <p>The "Start New Allocation" call-to-action was intentionally prominent but not the only thing on the screen. The dashboard had to <strong>serve the returning user</strong>, not just the first-time user.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "I always design dashboards for the 90% case, not the 10% case. The 90% case here was a returning analyst, not a new user. That's why operational status came first, and onboarding CTAs came second."</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SCREEN SHOWCASE ── -->
-<section class="screens-section" id="screens">
-  <div class="screens-inner">
-    <p class="section-eyebrow reveal">Screen Walkthrough</p>
-    <h2 class="section-title reveal">The system, <em>end to end.</em></h2>
-    <div class="screens-grid reveal">
-
-      <div class="screen-card wide" onclick="openLightbox('images/dashboard.png')">
-        <img class="screen-img" src="images/dashboard.png" alt="AIM Dashboard" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📊</div>Dashboard</div>
-        <div class="screen-caption">
-          <span class="screen-name">Dashboard — Allocation Control Tower</span>
-          <span class="screen-badge">Step 0</span>
-        </div>
-      </div>
-
-      <div class="screen-card" onclick="openLightbox('images/brand-selection.png')">
-        <img class="screen-img" src="images/brand-selection.png" alt="Select Brand" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🏷️</div>Select Brand</div>
-        <div class="screen-caption">
-          <span class="screen-name">Brand Selection — Context Setting</span>
-          <span class="screen-badge">Pre-step</span>
-        </div>
-      </div>
-
-      <div class="screen-card" onclick="openLightbox('images/SelectOrderType.png')">
-        <img class="screen-img" src="images/SelectOrderType.png" alt="Order Type" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📋</div>Order Type</div>
-        <div class="screen-caption">
-          <span class="screen-name">Select Order Type — Step 1</span>
-          <span class="screen-badge">Step 1 of 3</span>
-        </div>
-      </div>
-
-      <div class="screen-card" onclick="openLightbox('images/SubOrderType.png')">
-        <img class="screen-img" src="images/SubOrderType.png" alt="Order Type Dropdown" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📋</div>Split Type</div>
-        <div class="screen-caption">
-          <span class="screen-name">Select Sub Order Type</span>
-          <span class="screen-badge">Step 1 of 3</span>
-        </div>
-      </div>
-
-      <div class="screen-card" onclick="openLightbox('images/SelectionModule.png')">
-        <img class="screen-img" src="images/SelectionModule.png" alt="Selection Module - Country Dropdown" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🌍</div>Selection Module</div>
-        <div class="screen-caption">
-          <span class="screen-name">Selection Module — Country Dropdown Open</span>
-          <span class="screen-badge">Step 2 of 3</span>
-        </div>
-      </div>
-
-      <div class="screen-card" onclick="openLightbox('images/ItemDatasheet.png')">
-        <img class="screen-img" src="images/ItemDatasheet.png" alt="Selection Module - Configured" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">⚙️</div>Selection Config</div>
-        <div class="screen-caption">
-          <span class="screen-name">Selection Module — Fully Configured State</span>
-          <span class="screen-badge">Step 3 of 3</span>
-        </div>
-      </div>
-    </div>
-    <p style="margin-top:20px; font-size:13px; color:rgba(255,255,255,0.3); text-align:center; font-family:'DM Mono',monospace; letter-spacing:0.06em;">Click any screen to enlarge</p>
-  </div>
-</section>
-
-<!-- ── OUTCOMES ── -->
-<section class="outcomes-section" id="outcomes">
-  <div class="outcomes-inner">
-    <p class="section-eyebrow reveal">Outcomes & Impact</p>
-    <h2 class="section-title reveal">The numbers that<br>made it <em>real.</em></h2>
-    <div class="outcomes-grid reveal">
-      <div class="outcome-card">
-        <div class="outcome-num">92%</div>
-        <div class="outcome-label">Time Reduction</div>
-        <div class="outcome-detail">Allocation time dropped from ~60 minutes to under 5 minutes per run — a near-complete elimination of manual effort.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">0</div>
-        <div class="outcome-label">Formula Errors Post-Launch</div>
-        <div class="outcome-detail">The Excel-era formula mistakes — wrong lookups, stale references, incorrect cross-tab copies — disappeared entirely after go-live.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">2+</div>
-        <div class="outcome-label">Brands Supported</div>
-        <div class="outcome-detail">The brand-selector architecture (REDTAG / TWENTY4) was designed to scale. Adding a new brand became a configuration decision, not a redesign.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">Full</div>
-        <div class="outcome-label">Audit Visibility</div>
-        <div class="outcome-detail">Every allocation is now logged with type, brand, date, and status — providing a complete traceable history that Excel never could.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── REFLECTION ── -->
-<section class="reflection-section" id="reflection">
-  <div class="reflection-inner">
-    <div>
-      <p class="section-eyebrow reveal">Reflection</p>
-      <h2 class="section-title reveal">What I'd do<br><em>differently.</em></h2>
-      <p class="section-body reveal">Building a complex enterprise tool as a solo designer is demanding and rewarding in equal measure. Looking back, here's what I learned — and what I'd change.</p>
-    </div>
-    <div class="reflection-list reveal">
-      <div class="reflection-item">
-        <div class="r-icon">🔍</div>
-        <div class="r-text">
-          <h4>I'd push harder for user shadowing sessions earlier</h4>
-          <p>Working from stakeholder requirements meant I was designing for a described workflow, not an observed one. A few sessions watching analysts work in Excel before any design started would have surfaced edge cases I only caught later in review.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">📐</div>
-        <div class="r-text">
-          <h4>I'd design the empty states on day one</h4>
-          <p>Empty states — dashboard with no recent allocations, data sheet with no filtered results — were designed last. They should have been designed alongside the filled states, because they're what users see most when they're confused.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">📊</div>
-        <div class="r-text">
-          <h4>I'd push for a usability test before final handoff</h4>
-          <p>We validated through stakeholder reviews, not analyst testing. Given access, I'd have run at least two task-based tests — "complete a Country Split allocation for REDTAG, BOY department" — to catch any flow friction before development locked things in.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">⚡</div>
-        <div class="r-text">
-          <h4>The 3-panel layout on Selection Module was worth defending</h4>
-          <p>There was pushback on putting three panels on one screen. I'm glad I held the position. The alternative — separate steps for hierarchy, country, and calculation — would have added three extra clicks per allocation run, multiplied by daily usage, multiplied by every analyst. Friction compounds.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- ── CS01→CS02 BRIDGE ── -->
-<section class="cta-section" style="background:var(--cream-mid);">
-  <p class="cta-label reveal">Up Next · Case Study 03</p>
-  <h2 class="cta-title reveal">Warehouse Order Management —<br><em style="font-style:italic; color:var(--teal);">Customer Portal</em></h2>
-  <a href="#cs02" class="cta-btn reveal">Read Case Study 03 ↓</a>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     CASE STUDY 02 — WAREHOUSE ORDER MANAGEMENT PORTAL
-     ══════════════════════════════════════════════ -->
-
-<!-- CS02 DIVIDER -->
-<div style="background:var(--navy); padding:48px 80px; border-top:4px solid var(--teal);" id="cs02">
-  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-    <div>
-      <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Case Study 03 — Deep Dive</p>
-      <p style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--white); line-height:1.2;">Warehouse Order Management <em style="font-style:italic; color:var(--teal);">Customer Portal</em></p>
-    </div>
-    <div style="font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">Oracle Redwood · Enterprise B2B</div>
-  </div>
-</div>
-
-<!-- CS02 HERO -->
-<section class="hero" style="min-height:85vh;">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-bg-glow" style="left:-150px; right:auto;"></div>
-  <p class="hero-eyebrow">Case Study 03 · B2B Portal · Oracle Redwood</p>
-  <h1 class="hero-title">Giving Customers<br>Visibility Into Their <em>Own Orders.</em></h1>
-  <p class="hero-subtitle">How I designed a customer-facing warehouse order management portal — enabling seamless order placement, real-time tracking, and fulfilment transparency — built on Oracle's Redwood Design System for enterprise consistency across every device.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <label>Platform</label>
-      <span>Web Portal (Responsive)</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Design System</label>
-      <span>Oracle Redwood</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>My Role</label>
-      <span>Lead UX Designer</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Domain</label>
-      <span>Warehouse Management · B2B Enterprise</span>
-    </div>
-  </div>
-  <div class="hero-stat-strip">
-    <div class="stat-block">
-      <div class="num">100%</div>
-      <div class="label">Self-service Order Tracking</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">AI</div>
-      <div class="label">Research & Prototyping</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">Multi</div>
-      <div class="label">Device Optimised</div>
-    </div>
-  </div>
-</section>
-
-<!-- CS02 CONTEXT -->
-<section class="section-full">
-  <div class="context-band">
-    <div class="context-band-inner">
-      <div>
-        <p class="section-eyebrow reveal">The Problem</p>
-        <h2 class="section-title reveal">Customers in the dark<br>about their <em>own shipments.</em></h2>
-        <p class="section-body reveal">Enterprise customers placing warehouse orders had no direct visibility into where their orders stood — placement confirmation, processing status, fulfilment progress, or dispatch timing all required back-and-forth with account managers. It was slow, error-prone, and frustrating for customers who expected the same transparency they got from consumer apps.</p>
-        <br>
-        <p class="section-body reveal" style="margin-top:16px;">The business needed a self-service customer portal that could surface the right information at the right time — reducing support load, improving customer confidence, and reflecting the enterprise quality expected of an Oracle-ecosystem product.</p>
-      </div>
-      <div class="reveal">
-        <div class="quote-block">
-          <p>"Our customers shouldn't need to call us just to find out if their order has shipped. We needed to give them a window into our operations — without exposing our internal complexity."</p>
-          <cite>— Business Stakeholder, Workshop Session</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS02 PROBLEM CARDS -->
-<div style="max-width:1300px; margin:0 auto; padding:0 80px 0;">
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="icon">📞</div>
-      <h3>High Support Volume</h3>
-      <p>Customers routinely contacted account managers for status updates that should have been self-serve. Every query was a manual lookup — time wasted on both sides.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">🔍</div>
-      <h3>Zero Fulfilment Transparency</h3>
-      <p>Once an order was placed, customers had no visibility into warehouse processing, packing, or dispatch readiness. Trust eroded with every unanswered question.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">📱</div>
-      <h3>No Device Flexibility</h3>
-      <p>The existing internal tools were desktop-only. Customers on mobile or tablet had no usable interface — a critical gap for field buyers and procurement teams on the move.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CS02 ROLE STRIP -->
-<div class="role-strip" style="margin-top:80px;">
-  <div class="role-strip-inner">
-    <span class="role-label">My Role</span>
-    <div class="role-tags">
-      <span class="tag">Lead UX Designer</span>
-      <span class="tag">Oracle Redwood Design System</span>
-      <span class="tag">Stakeholder Workshops</span>
-      <span class="tag">AI-Assisted Research</span>
-      <span class="tag">Rapid Prototyping</span>
-      <span class="tag">Responsive Design</span>
-      <span class="tag">UX Strategy</span>
-    </div>
-  </div>
-</div>
-
-<!-- CS02 PROCESS -->
-<section class="process-section">
-  <div class="process-inner">
-    <p class="section-eyebrow reveal">My Process</p>
-    <h2 class="section-title reveal">Designing for customers,<br><em>not just users.</em></h2>
-    <div class="process-timeline reveal">
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">01 — Discover</div>
-        <div class="step-title">Stakeholder Workshops</div>
-        <div class="step-body">Ran structured workshops with business and operations stakeholders to map the current order journey and identify where customers felt most uncertain. Translated pain points into design opportunities.</div>
+        <div class="process-dot"></div>
+        <div class="process-step-num">04 — Validate</div>
+        <h4>Test &amp; Iterate</h4>
+        <p>Prototypes are tested against real tasks with real users. Usability findings directly drive design revisions. This loop continues until the design is validated — not just stakeholder-approved.</p>
       </div>
       <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">02 — Synthesise</div>
-        <div class="step-title">AI-Assisted Research</div>
-        <div class="step-body">Used AI tools to rapidly synthesise workshop outputs, cluster themes, and generate initial journey maps. This compressed a 2-week research synthesis into 2 days — freeing time for deeper design exploration.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">03 — Define</div>
-        <div class="step-title">Oracle Redwood Alignment</div>
-        <div class="step-body">Mapped the required flows against Oracle Redwood's component library and design principles. Identified where Redwood components could be used as-is vs. where custom patterns were needed for our specific use cases.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">04 — Prototype</div>
-        <div class="step-title">Rapid Iteration</div>
-        <div class="step-body">Built interactive prototypes using AI-assisted tooling for low-fidelity exploration, then moved to high-fidelity Figma screens for stakeholder critique. Iterated across three rounds of review before sign-off.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">05 — Validate</div>
-        <div class="step-title">Critique & Alignment</div>
-        <div class="step-body">Facilitated structured critique sessions where stakeholders could challenge design decisions against business priorities. Every change was tied back to a documented UX rationale — not just stakeholder preference.</div>
+        <div class="process-dot"></div>
+        <div class="process-step-num">05 — Deliver</div>
+        <h4>Handoff &amp; Advocacy</h4>
+        <p>Annotated specs and component documentation ensure what gets built matches what was designed. I stay involved through development — reviewing builds and advocating at every sprint.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CS02 DESIGN DECISIONS -->
-<section class="decisions-section">
-  <div class="decisions-inner">
-    <p class="section-eyebrow reveal">Key Design Decisions</p>
-    <h2 class="section-title reveal">Four choices that shaped<br>the <em>portal experience.</em></h2>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">01</div>
-        <h3>Oracle Redwood as Foundation, Not Constraint</h3>
-        <div class="decision-screen-label">Design System Strategy</div>
-      </div>
-      <div class="decision-content">
-        <p>Working within Oracle Redwood's design system was a mandate, not a choice. But there's a difference between using a design system and hiding behind one. My approach was to treat Redwood as the structural skeleton — typography, colour tokens, base components — while <strong>crafting the information architecture and interaction flows entirely for this customer context.</strong></p>
-        <p>Where Redwood had an appropriate component (data tables, status badges, form elements), I used it. Where the customer journey needed something specific — like a multi-stage order timeline or a fulfilment progress indicator — I designed custom patterns that respected Redwood's visual language without being limited by its default assumptions.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "Design systems are a starting point, not a ceiling. My job was to understand Redwood deeply enough to know which rules to follow faithfully and which gaps I needed to fill with thoughtful custom patterns."</p>
-        </div>
-      </div>
+<!-- DESIGN PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="philosophy-inner">
+    <div class="philosophy-left reveal">
+      <span class="section-eyebrow">Design Philosophy</span>
+      <h2 class="section-heading">Good UX is invisible.<br><em>Bad UX isn't.</em></h2>
+      <p>I design for the user who has 30 seconds, a deadline, and no patience for unclear interfaces. Enterprise users aren't a different species — they have the same cognitive limitations as anyone else, but higher stakes when things go wrong. Clarity, predictability, and reduced cognitive load sit at the centre of every design decision I make.</p>
+      <p style="margin-top:16px;">My goal is never to make something look impressive in a demo. It's to make something work so well that nobody notices the design — only the outcome.</p>
     </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">02</div>
-        <h3>Order Status Architecture — Designed for Clarity, Not Completeness</h3>
-        <div class="decision-screen-label">Order Tracking Flow</div>
+    <div class="philosophy-right reveal">
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">Principle 01</div>
+        <h4>Structure follows cognition, not convention</h4>
+        <p>Layout and IA should mirror how users actually think about their task — not how the business organises its data internally. I map user mental models before I draw a single layout.</p>
       </div>
-      <div class="decision-content">
-        <p>The warehouse operations team wanted to expose every internal status: received, queued, picked, packed, quality-checked, dispatched, in-transit. That's eight states. I pushed back — not because the data wasn't real, but because <strong>customers don't need operational granularity, they need confidence.</strong></p>
-        <p>I reduced the customer-facing status model to four meaningful milestones: Order Confirmed → Processing → Ready for Dispatch → Delivered. Behind each milestone, the system still tracked internal sub-states for operations. But the customer saw a clean, predictable journey that answered the only questions they actually cared about: "Has my order been received? Is it being processed? When does it ship?"</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "I ran a workshop exercise called 'What would your customer text their colleague?' Every status state we proposed had to answer that text naturally. If it couldn't, we cut it or merged it."</p>
-        </div>
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">Principle 02</div>
+        <h4>Constraints are design inputs, not obstacles</h4>
+        <p>WCAG standards, design system rules, technical limitations — these aren't restrictions. They're the context inside which good design happens. Working with constraints produces sharper decisions.</p>
       </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">03</div>
-        <h3>AI-Assisted Prototyping as a Stakeholder Confidence Tool</h3>
-        <div class="decision-screen-label">Process Innovation</div>
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">Principle 03</div>
+        <h4>Multi-role doesn't mean multiple products</h4>
+        <p>Complex systems with many user roles need a single adaptive shell — not separate applications. I design the shared structure first, then the role-specific differences. Not the other way around.</p>
       </div>
-      <div class="decision-content">
-        <p>This project was the first time I systematically integrated AI tools into my design workflow — not just for research synthesis, but for <strong>generating low-fidelity prototype variants quickly enough to present alternatives in the same session where requirements were discussed.</strong></p>
-        <p>When a stakeholder raised a new requirement in a workshop, I could sketch two or three conceptual responses within minutes using AI-assisted layout tools, project them immediately, and facilitate a live discussion around real visual options rather than abstract descriptions. This compressed the feedback loop dramatically and gave stakeholders something concrete to react to — which consistently produced sharper, more actionable feedback than traditional note-taking sessions.</p>
-        <p>The AI tools didn't replace design thinking. They replaced blank-page waiting time — letting me spend creative energy on the decisions that actually required it.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "AI-assisted prototyping didn't make me faster at execution — it made me faster at getting to the questions worth asking. That's a very different kind of speed."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">04</div>
-        <h3>Responsive-First for a B2B Audience That's Often Mobile</h3>
-        <div class="decision-screen-label">Device Strategy</div>
-      </div>
-      <div class="decision-content">
-        <p>There's a common assumption in enterprise UX that B2B users are always at a desk. The stakeholder discovery process challenged this: procurement contacts, field buyers, and warehouse liaisons frequently check order status on their phones between meetings, on the warehouse floor, or while travelling.</p>
-        <p>I designed <strong>mobile as a primary consideration, not an afterthought.</strong> Key flows — order status check, fulfilment progress, document download — were validated at 375px width before being adapted upward. The desktop experience gained density and additional data columns, but the mobile experience was complete and never felt stripped down.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "For this project, I stopped asking 'how do we adapt the desktop for mobile' and started asking 'what does someone need when they have 30 seconds and a phone?' That reframe changed the priority of almost every feature on the page."</p>
-        </div>
+      <div class="philosophy-card">
+        <div class="philosophy-card-label">Principle 04</div>
+        <h4>Documentation is the final act of design thinking</h4>
+        <p>A design that isn't fully specified isn't finished. Annotation, edge case documentation, and handoff clarity are part of the design process — and I treat them that way.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CS02 OUTCOMES -->
-<section class="outcomes-section">
-  <div class="outcomes-inner">
-    <p class="section-eyebrow reveal">Outcomes & Impact</p>
-    <h2 class="section-title reveal">What the portal<br><em>changed.</em></h2>
-    <div class="outcomes-grid reveal">
-      <div class="outcome-card">
-        <div class="outcome-num">↓</div>
-        <div class="outcome-label">Support Query Volume</div>
-        <div class="outcome-detail">Self-service order tracking eliminated the most common category of customer support requests — "where is my order?" calls to account managers.</div>
+<!-- EXPERTISE -->
+<section class="expertise-section" id="expertise">
+  <div class="expertise-inner">
+    <span class="section-eyebrow reveal">Expertise &amp; Tools</span>
+    <h2 class="section-heading reveal">What I bring<br>to every project.</h2>
+    <div class="expertise-grid reveal">
+      <div class="expertise-card">
+        <div class="expertise-icon">🏗️</div>
+        <h4>UX Strategy &amp; Research</h4>
+        <p>User interviews, contextual inquiry, competitive analysis, heuristic evaluation, and stakeholder workshops. I build the case for design decisions with evidence — not opinion.</p>
+        <div class="expertise-tools"><span class="tool-tag">User Interviews</span><span class="tool-tag">FigJam</span><span class="tool-tag">Journey Mapping</span><span class="tool-tag">Affinity Mapping</span></div>
       </div>
-      <div class="outcome-card">
-        <div class="outcome-num">3×</div>
-        <div class="outcome-label">Faster Stakeholder Sign-off</div>
-        <div class="outcome-detail">AI-assisted prototyping allowed live iteration in workshop sessions, compressing a typical 3-week review cycle into structured single-session critique rounds.</div>
+      <div class="expertise-card">
+        <div class="expertise-icon">📐</div>
+        <h4>Interaction &amp; System Design</h4>
+        <p>Information architecture, interaction modelling, wireframing, and high-fidelity design for complex enterprise systems. I design for scale, edge cases, and empty states — not just the happy path.</p>
+        <div class="expertise-tools"><span class="tool-tag">Figma</span><span class="tool-tag">Adobe XD</span><span class="tool-tag">Wireframing</span><span class="tool-tag">Prototyping</span></div>
       </div>
-      <div class="outcome-card">
-        <div class="outcome-num">100%</div>
-        <div class="outcome-label">Device Coverage</div>
-        <div class="outcome-detail">First enterprise portal in the product line to be fully validated and usable across desktop, tablet, and mobile without feature degradation.</div>
+      <div class="expertise-card">
+        <div class="expertise-icon">⚙️</div>
+        <h4>Oracle &amp; Enterprise Ecosystem</h4>
+        <p>Deep experience with Oracle Redwood Design System, Oracle EBS integration UX, and enterprise SaaS patterns across supply chain, retail, and sales enablement domains.</p>
+        <div class="expertise-tools"><span class="tool-tag">Oracle Redwood</span><span class="tool-tag">Oracle EBS</span><span class="tool-tag">Enterprise SaaS</span><span class="tool-tag">B2B Portals</span></div>
       </div>
-      <div class="outcome-card">
-        <div class="outcome-num">✓</div>
-        <div class="outcome-label">Oracle Redwood Compliant</div>
-        <div class="outcome-detail">Delivered full design system compliance while introducing custom patterns for order timeline and fulfilment visibility — both accepted into the broader design library.</div>
+      <div class="expertise-card">
+        <div class="expertise-icon">♿</div>
+        <h4>Accessibility &amp; Standards</h4>
+        <p>WCAG 2.1 AA compliance designed in from day one. Semantic HTML advocacy, focus management, colour contrast, and screen reader annotation as part of the design spec — not an afterthought.</p>
+        <div class="expertise-tools"><span class="tool-tag">WCAG 2.1 AA</span><span class="tool-tag">ARIA</span><span class="tool-tag">Keyboard Nav</span><span class="tool-tag">Colour Contrast</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS02 REFLECTION -->
-<section class="reflection-section">
-  <div class="reflection-inner">
-    <div>
-      <p class="section-eyebrow reveal">Reflection</p>
-      <h2 class="section-title reveal">What this project<br><em>taught me.</em></h2>
-      <p class="section-body reveal">Designing a customer portal within an enterprise design system, while also piloting AI-assisted design tooling, pushed me to grow in directions I didn't expect going in.</p>
-    </div>
-    <div class="reflection-list reveal">
-      <div class="reflection-item">
-        <div class="r-icon">🤖</div>
-        <div class="r-text">
-          <h4>AI tools are multipliers, not replacements</h4>
-          <p>The projects where AI-assisted tools had the most impact were the ones where I had the clearest brief. The clearer my design intent, the more useful the AI output. Garbage in, garbage out — at 10x speed.</p>
-        </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">🤝</div>
+        <h4>Cross-functional Collaboration</h4>
+        <p>Cross-timezone design collaboration, dev advocacy, style guide authorship, and design-to-development handoff. I bridge the gap between what gets designed and what actually gets built.</p>
+        <div class="expertise-tools"><span class="tool-tag">Style Guides</span><span class="tool-tag">Dev Handoff</span><span class="tool-tag">Async Collaboration</span><span class="tool-tag">Critique Sessions</span></div>
       </div>
-      <div class="reflection-item">
-        <div class="r-icon">🏛️</div>
-        <div class="r-text">
-          <h4>Design system mastery is a competitive advantage</h4>
-          <p>Knowing Redwood deeply enough to distinguish "this is a gap" from "this is a misuse" saved weeks of back-and-forth with engineering. System literacy is underrated as a senior designer skill.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">🎯</div>
-        <div class="r-text">
-          <h4>Workshops only work if you control what happens after them</h4>
-          <p>I ran good workshops on this project. But the real value came from the structured critique sessions that followed — where I could present synthesis back to stakeholders and force prioritisation decisions. Discovery without structured follow-through produces noise, not insight.</p>
-        </div>
+      <div class="expertise-card">
+        <div class="expertise-icon">✉️</div>
+        <h4>Frontend Development Skill</h4>
+        <p>End-to-end ownership of converting a design into pixel perfect responsive production ready HTML — table less layout. CSS, CSS3 and SCSS expertise. Capable of implementing Javascript based animations.</p>
+        <div class="expertise-tools"><span class="tool-tag">HTML Email</span><span class="tool-tag">Responsive Webpage</span><span class="tool-tag">Cross browser Compatible</span><span class="tool-tag">Javascript Animations</span></div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ── CS02→CS03 BRIDGE ── -->
-<section class="cta-section" style="background:var(--cream-mid);">
-  <p class="cta-label reveal">Up Next · Case Study 04</p>
-  <h2 class="cta-title reveal">Sales Accelerator —<br><em style="font-style:italic; color:var(--teal);">Sales Enablement Platform</em></h2>
-  <a href="#cs03" class="cta-btn reveal">Read Case Study 04 ↓</a>
-</section>
-
-<div style="background:var(--navy); padding:48px 80px; border-top:4px solid var(--teal);" id="cs03">
-  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
-    <div>
-      <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Case Study 04 — Deep Dive</p>
-      <p style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--white); line-height:1.2;">Sales Accelerator — <em style="font-style:italic; color:var(--teal);">Sales Enablement Platform</em></p>
-    </div>
-    <div style="font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">Oracle Redwood · WCAG AA · Multi-Role</div>
-  </div>
-</div>
-
-<!-- CS03 HERO -->
-<section class="hero" style="min-height:85vh;">
-  <div class="hero-bg-grid"></div>
-  <div class="hero-bg-glow"></div>
-  <p class="hero-eyebrow">Case Study 04 · Sales Enablement · Multi-Role UX · Cross-timezone Collaboration</p>
-  <h1 class="hero-title">One Platform.<br>Four Roles. Zero <em>Confusion.</em></h1>
-  <p class="hero-subtitle">How I collaborated across continents to design Sales Accelerator — a multi-role sales enablement application that lets reps organise, discover, share and manage content at speed — built to Oracle Redwood standards, WCAG AA accessibility, and fully responsive from 1024 to 1920px.</p>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <label>Platform</label>
-      <span>Web Application (Responsive)</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Design System</label>
-      <span>Oracle Redwood</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>Accessibility</label>
-      <span>WCAG 2.1 AA</span>
-    </div>
-    <div class="hero-meta-item">
-      <label>My Role</label>
-      <span>UX Designer · Cross-team Collaborator</span>
-    </div>
-  </div>
-  <div class="hero-stat-strip">
-    <div class="stat-block">
-      <div class="num">4</div>
-      <div class="label">User Roles Designed</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">AA</div>
-      <div class="label">WCAG Compliance</div>
-    </div>
-    <div class="stat-block">
-      <div class="num">2×</div>
-      <div class="label">Timezones. One Team.</div>
-    </div>
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-inner reveal">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">The best enterprise UX isn't the one that looks most impressive in a demo. It's the one that a stressed analyst can operate correctly at 9am on a Monday — without reading the manual.</p>
+    <span class="quote-attr">— Deepak Arun · UX Design Philosophy</span>
   </div>
 </section>
 
-<!-- CS03 CONTEXT -->
-<section class="section-full">
-  <div class="context-band">
-    <div class="context-band-inner">
-      <div>
-        <p class="section-eyebrow reveal">The Problem</p>
-        <h2 class="section-title reveal">Sales reps drowning in<br><em>content they can't find.</em></h2>
-        <p class="section-body reveal">Sales teams were sitting on a wealth of collateral — product sheets, pitch decks, case studies, battlecards — but couldn't surface the right content at the right moment. Files were scattered across shared drives, email threads, and personal folders. Reps spent valuable pre-call time hunting instead of preparing. There was no structured way to organise, search, or share content with prospects or partners.</p>
-        <br>
-        <p class="section-body reveal" style="margin-top:16px;">The challenge wasn't just building a content library — it was designing for four distinct user roles, each with different permissions, priorities, and mental models, on a platform that had to meet enterprise accessibility standards and scale cleanly across screen sizes.</p>
-      </div>
-      <div class="reveal">
-        <div class="quote-block">
-          <p>"Our reps know the right content exists somewhere. The problem is 'somewhere' is doing a lot of heavy lifting. By the time they find what they need, the moment has passed."</p>
-          <cite>— Product Manager, Sales Accelerator</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS03 PROBLEM CARDS -->
-<div style="max-width:1300px; margin:0 auto; padding:0 80px 0;">
-  <div class="problem-grid reveal">
-    <div class="problem-card">
-      <div class="icon">🗂️</div>
-      <h3>No Systematic Organisation</h3>
-      <p>Content lived in silos — email, drives, personal folders. There was no shared taxonomy, no tagging, no way to browse by context or use case. Everyone had their own system, which meant no one had a shared one.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">🔐</div>
-      <h3>Four Roles, Zero Boundaries</h3>
-      <p>Sellers, Partners, Content Admins and Contributors needed fundamentally different experiences — but the existing tooling treated everyone the same. Admins were overwhelmed by user-facing noise; sellers were blocked by admin-only paths.</p>
-    </div>
-    <div class="problem-card">
-      <div class="icon">♿</div>
-      <h3>Accessibility Was an Afterthought</h3>
-      <p>The previous iteration had no documented accessibility posture. For an enterprise Oracle product, WCAG AA compliance wasn't optional — it was a commercial and legal requirement that had to be designed in from day one.</p>
-    </div>
-  </div>
-</div>
-
-<!-- CS03 ROLE STRIP -->
-<div class="role-strip" style="margin-top:80px;">
-  <div class="role-strip-inner">
-    <span class="role-label">My Contributions</span>
-    <div class="role-tags">
-      <span class="tag">Cross-timezone UX Collaboration</span>
-      <span class="tag">Requirements Gathering</span>
-      <span class="tag">Oracle Redwood</span>
-      <span class="tag">WCAG 2.1 AA</span>
-      <span class="tag">Style Guide Authoring</span>
-      <span class="tag">Dev Advocacy</span>
-      <span class="tag">Responsive Design (1024–1920)</span>
-      <span class="tag">Email Template UX + HTML</span>
-    </div>
-  </div>
-</div>
-
-<!-- CS03 MY ROLE CALLOUT -->
-<div style="background:var(--white); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:80px;">
-  <div style="max-width:1300px; margin:0 auto;">
-    <p class="section-eyebrow reveal">My Role in Detail</p>
-    <h2 class="section-title reveal" style="margin-bottom:48px;">Not just designing —<br><em>bridging design and build.</em></h2>
-    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border);" class="reveal">
-
-      <div style="background:var(--cream); padding:36px 32px;">
-        <div style="width:40px;height:40px;background:var(--teal-faint);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:18px;">🌍</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:10px;">Cross-timezone Collaboration</h3>
-        <p style="font-size:14px;font-weight:300;line-height:1.75;color:var(--text-secondary);">Worked closely with UX designers based in the US and the Product Manager to gather requirements, align on interaction patterns, and ensure design decisions held up across team boundaries. Ran async and live review cycles to keep momentum despite the time difference.</p>
-      </div>
-
-      <div style="background:var(--cream); padding:36px 32px;">
-        <div style="width:40px;height:40px;background:var(--teal-faint);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:18px;">📐</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:10px;">Style Guide & Dev Advocacy</h3>
-        <p style="font-size:14px;font-weight:300;line-height:1.75;color:var(--text-secondary);">Authored a comprehensive style guide for the development team and actively advocated for correct HTML structure and Redwood styling throughout implementation. Reviewed builds to catch deviations early — because a perfect design handed off badly still ships broken.</p>
-      </div>
-
-      <div style="background:var(--cream); padding:36px 32px;">
-        <div style="width:40px;height:40px;background:var(--teal-faint);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:18px;">✉️</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:10px;">Email Template Ownership</h3>
-        <p style="font-size:14px;font-weight:300;line-height:1.75;color:var(--text-secondary);">Had full ownership of UX design <em>and</em> HTML development for all Sales Accelerator email templates. This was a rare end-to-end responsibility — from template information hierarchy to production-ready, cross-client HTML code.</p>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- CS03 PROCESS -->
-<section class="process-section">
-  <div class="process-inner">
-    <p class="section-eyebrow reveal">My Process</p>
-    <h2 class="section-title reveal">Designing across roles,<br><em>timezones, and standards.</em></h2>
-    <div class="process-timeline reveal">
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">01 — Align</div>
-        <div class="step-title">Cross-team Requirements</div>
-        <div class="step-body">Collaborated with the US-based UX team and Product Manager to surface requirements from both business and user perspectives. Established a shared language for the four roles before a single screen was drawn.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">02 — Map</div>
-        <div class="step-title">Role-based Flow Architecture</div>
-        <div class="step-body">Mapped the distinct journeys for Seller, Partner, Content Admin, and Contributor. Identified shared components vs. role-exclusive flows. Designed permission boundaries to be invisible to users but robust in implementation.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">03 — Design</div>
-        <div class="step-title">Redwood-first UI</div>
-        <div class="step-body">Built all screens within Oracle Redwood guidelines — applying correct component usage, spacing tokens, and interaction patterns. Flagged gaps where Redwood components needed extension and documented custom solutions carefully.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">04 — Audit</div>
-        <div class="step-title">WCAG AA Compliance</div>
-        <div class="step-body">Ran accessibility audits against WCAG 2.1 AA criteria throughout — colour contrast, focus states, keyboard navigation, screen reader labels, ARIA roles. Accessibility was reviewed at component level, not just at the end.</div>
-      </div>
-      <div class="process-step">
-        <div class="step-dot"></div>
-        <div class="step-num">05 — Advocate</div>
-        <div class="step-title">Design–Dev Handoff</div>
-        <div class="step-body">Authored a detailed style guide, sat with developers during implementation, and reviewed builds against designs. Caught HTML structure issues and Redwood misapplications before they reached QA — saving rework cycles.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS03 DESIGN DECISIONS -->
-<section class="decisions-section">
-  <div class="decisions-inner">
-    <p class="section-eyebrow reveal">Key Design Decisions</p>
-    <h2 class="section-title reveal">Five decisions that defined<br>the <em>platform's character.</em></h2>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">01</div>
-        <h3>Designing Four Role Experiences Without Building Four Apps</h3>
-        <div class="decision-screen-label">Role Architecture · Permission Design — See: Homepage (Seller) vs Admin Form screens</div>
-      </div>
-      <div class="decision-content">
-        <p>Sales Accelerator had four distinct user types: <strong>Sellers</strong> who consume and share content, <strong>Partners</strong> with curated access to relevant materials, <strong>Content Admins</strong> who govern the library, and <strong>Contributors</strong> who submit new content. Each had a different mental model, different primary tasks, and different risk profiles if they accessed the wrong thing.</p>
-        <p>The trap would have been to build four separate interfaces. Instead, I designed a <strong>single adaptive shell</strong> with a shared navigation structure and role-aware component states. A Seller sees a search-forward, share-optimised experience. An Admin sees the same shell — but with governance controls surfaced, content approval queues visible, and bulk management actions available. The underlying component library is the same; what changes is what's visible, what's interactive, and what's contextually relevant.</p>
-        <p>This approach also future-proofed the system — adding a fifth role would require configuration, not redesign.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "I treated roles as lenses on the same data, not as separate products. The design challenge was figuring out the minimum permission delta that created meaningfully different experiences — without fragmenting the codebase or the design system."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">02</div>
-        <h3>Content Organisation — Taxonomy Before UI</h3>
-        <div class="decision-screen-label">Information Architecture — See: Homepage Navigate panel + Search Results grouping</div>
-      </div>
-      <div class="decision-content">
-        <p>Before touching a single screen layout, I spent significant time with the Product Manager working out the content taxonomy — how items would be categorised, tagged, and retrieved. This was the unsexy work that most designers skip, and the reason most content management UIs fail: <strong>the structure is wrong before the interface even starts.</strong></p>
-        <p>We defined a two-level hierarchy (Collections → Items), with flexible tagging for cross-cutting themes like product line, industry vertical, and content type. The search experience was designed around this taxonomy — predictive filtering, tag-based browsing, and full-text search all relied on clean underlying structure. A beautiful search UI built on top of unstructured content is still a dead end.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "IA work almost never shows up in a portfolio. But it's often the highest-leverage design decision in the project. On Sales Accelerator, getting the content taxonomy right meant every subsequent UI decision had a solid foundation to build on."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">03</div>
-        <h3>WCAG AA as a Design Constraint, Not a Checklist</h3>
-        <div class="decision-screen-label">Accessibility · WCAG 2.1 AA</div>
-      </div>
-      <div class="decision-content">
-        <p>Accessibility compliance on enterprise Oracle products isn't optional — it's a contractual and legal requirement. But the way teams often approach it — audit at the end, retrofit what fails — produces technically compliant, experientially broken products. I embedded accessibility thinking into the design phase itself.</p>
-        <p><strong>Colour contrast</strong> was verified at the component level, not just page-level spot checks. <strong>Focus states</strong> were designed explicitly — visible, consistent, and aligned with Redwood's focus token — because keyboard navigation is a primary modality for many enterprise users. <strong>ARIA labels, landmark roles, and reading order</strong> were specified in design annotations handed to developers, removing ambiguity at handoff.</p>
-        <p>When I advocated for correct HTML structure with the dev team, accessibility was my strongest argument. Semantic HTML isn't just good practice — it's what makes screen readers, keyboard navigation, and assistive technologies work correctly.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "WCAG compliance and good UX are not in tension — they're aligned. Every accessibility decision I made on this project also made the product clearer, more predictable, and easier to use for everyone."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">04</div>
-        <h3>Responsive Across 1024–1920px — No Feature Degradation</h3>
-        <div class="decision-screen-label">Responsive Strategy</div>
-      </div>
-      <div class="decision-content">
-        <p>I owned the full responsive implementation across the 1024–1920px range. This wasn't just about reflow — it was about ensuring that a sales rep on a 1024px laptop in a client lobby had the same functional capability as someone on a 1920px desktop monitor in the office. <strong>Content density changed. Feature set didn't.</strong></p>
-        <p>Key decisions at the tighter end of the range: collapsible sidebar navigation to reclaim horizontal space, single-column content list vs. grid view toggle, and progressive disclosure of metadata on content cards. At wider breakpoints, multi-column layouts and expanded filtering panels became available. The underlying component structure accommodated both without duplication.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "Responsive design in enterprise tools often gets treated as 'make it not break on small screens.' I framed it differently: every breakpoint is a context, and every context deserves a purposeful layout decision — not just a scaled-down version of the largest one."</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="decision-row reveal">
-      <div class="decision-meta">
-        <div class="decision-number">05</div>
-        <h3>Email Templates — UX-Designed and Production-Coded</h3>
-        <div class="decision-screen-label">Email UX · HTML Development — See: Welcome Email Template screen</div>
-      </div>
-      <div class="decision-content">
-        <p>I had full ownership of all Sales Accelerator email templates — from UX design through to production HTML. This is an unusual scope for a UX designer, and it shaped how I approached both disciplines. Because I was writing the HTML myself, I designed with the medium's constraints in mind from the start: <strong>no CSS grid, no flexbox, table-based layout, inline styles, limited font stacks.</strong></p>
-        <p>Each template was designed to serve a specific trigger event — content shared with a prospect, approval request for a new submission, admin notification for library changes. The information hierarchy for each email was designed to answer one question in the subject line, one action in the preview text, and one clear CTA above the fold — regardless of email client rendering behaviour.</p>
-        <p>Testing across clients (Outlook, Gmail, Apple Mail) revealed rendering inconsistencies that I resolved at the code level — not by filing tickets and waiting, but by iterating directly. The result was a suite of templates that looked intentional and on-brand across every client without exception.</p>
-        <div class="insight-box">
-          <p><strong>Interview talking point:</strong> "Owning email HTML development made me a better email UX designer. Knowing exactly why certain patterns break in Outlook made me design differently — simpler layouts, fewer assumptions, and better fallbacks. Constraints don't limit good design; they focus it."</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CS03 SCREEN SHOWCASE -->
-<section class="screens-section">
-  <div class="screens-inner">
-    <p class="section-eyebrow reveal">Screen Walkthrough</p>
-    <h2 class="section-title reveal">The platform, <em>in full.</em></h2>
-    <p style="color:rgba(255,255,255,0.4); font-size:14px; margin-top:12px; margin-bottom:40px; font-weight:300;" class="reveal">9 screens across the full Sales Accelerator experience — homepage to email. Click any screen to enlarge.</p>
-
-    <div class="screens-grid reveal">
-
-      <!-- Homepage -->
-      <div class="screen-card wide" onclick="openLightbox('/mnt/user-data/uploads/1776596051936_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596051936_image.png" alt="Sales Accelerator Homepage" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🏠</div>Homepage</div>
-        <div class="screen-caption">
-          <span class="screen-name">Homepage — Navigate, Featured Content & Saved Searches</span>
-          <span class="screen-badge">Seller View</span>
-        </div>
-      </div>
-
-      <!-- Search Results -->
-      <div class="screen-card wide" onclick="openLightbox('/mnt/user-data/uploads/1776596058448_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596058448_image.png" alt="Search Results" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🔍</div>Search</div>
-        <div class="screen-caption">
-          <span class="screen-name">Search Results — Assets + Products, Multi-category with Save Search</span>
-          <span class="screen-badge">All Roles</span>
-        </div>
-      </div>
-
-      <!-- Asset Preview Panel -->
-      <div class="screen-card" onclick="openLightbox('/mnt/user-data/uploads/1776596062049_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596062049_image.png" alt="Asset Preview" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📄</div>Asset Preview</div>
-        <div class="screen-caption">
-          <span class="screen-name">Asset Detail — Preview + Metadata Panel</span>
-          <span class="screen-badge">Content Admin</span>
-        </div>
-      </div>
-
-      <!-- Product Navigation -->
-      <div class="screen-card" onclick="openLightbox('/mnt/user-data/uploads/1776596065412_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596065412_image.png" alt="Product Navigation" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📦</div>Products</div>
-        <div class="screen-caption">
-          <span class="screen-name">Product Navigation — Hierarchy Browse + Featured Assets</span>
-          <span class="screen-badge">Seller View</span>
-        </div>
-      </div>
-
-      <!-- User Profile + Saved Searches -->
-      <div class="screen-card wide" onclick="openLightbox('/mnt/user-data/uploads/1776596077188_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596077188_image.png" alt="User Profile and Saved Searches" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">👤</div>Profile</div>
-        <div class="screen-caption">
-          <span class="screen-name">User Profile — Saved Searches, History & Digest Subscriptions</span>
-          <span class="screen-badge">All Roles</span>
-        </div>
-      </div>
-
-      <!-- Product Detail Page -->
-      <div class="screen-card" onclick="openLightbox('/mnt/user-data/uploads/1776596081385_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596081385_image.png" alt="Product Detail Page" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">📋</div>Product Detail</div>
-        <div class="screen-caption">
-          <span class="screen-name">Product Detail — Assets, Guided Selling, Compete & Contacts</span>
-          <span class="screen-badge">Seller View</span>
-        </div>
-      </div>
-
-      <!-- Customer Story Page -->
-      <div class="screen-card" onclick="openLightbox('/mnt/user-data/uploads/1776596086412_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596086412_image.png" alt="Customer Story Page" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">🏢</div>Customer Story</div>
-        <div class="screen-caption">
-          <span class="screen-name">Customer Story Page — Full Detail with Quotes, Partners & Assets</span>
-          <span class="screen-badge">Seller View</span>
-        </div>
-      </div>
-
-      <!-- Content Admin Form -->
-      <div class="screen-card" onclick="openLightbox('/mnt/user-data/uploads/1776596090397_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596090397_image.png" alt="Content Admin Form" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">⚙️</div>Admin Form</div>
-        <div class="screen-caption">
-          <span class="screen-name">Content Admin — Customer Story Edit Form (Full Field Set)</span>
-          <span class="screen-badge">Content Admin</span>
-        </div>
-      </div>
-
-      <!-- Email Template -->
-      <div class="screen-card" onclick="openLightbox('/mnt/user-data/uploads/1776596095110_image.png')">
-        <img class="screen-img" src="/mnt/user-data/uploads/1776596095110_image.png" alt="Email Template" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="screen-mock" style="display:none;"><div class="screen-mock-icon">✉️</div>Email Template</div>
-        <div class="screen-caption">
-          <span class="screen-name">Welcome Email Template — UX Designed & HTML Coded by Deepak</span>
-          <span class="screen-badge">Email · Production HTML</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Screen annotations -->
-    <div style="margin-top:48px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px;" class="reveal">
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:24px 20px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Homepage Design Intent</div>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.7;">The three-column layout (Navigate · Featured · Favourites) mirrors how sellers actually think — browse by category, scan what's new, return to what's worked. The persistent search bar above ensures search is always one action away regardless of where you are.</p>
-      </div>
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:24px 20px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Search Results Design Intent</div>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.7;">Results are grouped by entity type (Assets, Products, Stories) — not a flat list. This lets sellers understand context immediately. The tab bar at top allows narrowing to a single type. "Save Search" converts a successful query into a reusable subscription.</p>
-      </div>
-      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:24px 20px;">
-        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Email Template Design Intent</div>
-        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.7;">The welcome email answers three questions in order: Who are you? (personalised greeting), What is this? (product explanation), What do you do first? (three clear next steps). Table-based HTML, inline styles, verified across Outlook, Gmail, and Apple Mail.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CS03 OUTCOMES -->
-<section class="outcomes-section">
-  <div class="outcomes-inner">
-    <p class="section-eyebrow reveal">Outcomes & Impact</p>
-    <h2 class="section-title reveal">What Sales Accelerator<br><em>delivered.</em></h2>
-    <div class="outcomes-grid reveal">
-      <div class="outcome-card">
-        <div class="outcome-num">4</div>
-        <div class="outcome-label">Roles, One Coherent System</div>
-        <div class="outcome-detail">Seller, Partner, Content Admin, and Contributor experiences were unified under a single adaptive design shell — no role felt like a second-class citizen.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">AA</div>
-        <div class="outcome-label">WCAG Compliant at Launch</div>
-        <div class="outcome-detail">Full WCAG 2.1 AA compliance achieved at first release — a first for this product line. Accessibility was embedded in design, not retrofitted after build.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">100%</div>
-        <div class="outcome-label">Email Template Coverage</div>
-        <div class="outcome-detail">Every system notification email was UX-designed and production-coded by me — consistent, on-brand, and verified across Outlook, Gmail, and Apple Mail.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">↑</div>
-        <div class="outcome-label">Dev Team Design Fidelity</div>
-        <div class="outcome-detail">Active dev advocacy and a detailed style guide measurably reduced implementation drift. Builds reviewed mid-sprint matched designs more closely than any previous project.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CS03 REFLECTION -->
-<section class="reflection-section">
-  <div class="reflection-inner">
-    <div>
-      <p class="section-eyebrow reveal">Reflection</p>
-      <h2 class="section-title reveal">What this project<br><em>sharpened in me.</em></h2>
-      <p class="section-body reveal">Sales Accelerator was the project where I learned that great UX design is only half the job. The other half is ensuring it survives contact with implementation.</p>
-    </div>
-    <div class="reflection-list reveal">
-      <div class="reflection-item">
-        <div class="r-icon">🌐</div>
-        <div class="r-text">
-          <h4>Async collaboration is a skill you can learn</h4>
-          <p>Working with a US-based team meant asynchronous-first communication. I got better at writing design rationale that could be read and understood without me in the room — which, it turns out, makes you a better designer regardless of timezone.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">🛠️</div>
-        <div class="r-text">
-          <h4>Dev advocacy is more effective than dev criticism</h4>
-          <p>Early on I'd flag issues as problems. I learned to reframe them as solutions — "here's why this matters, here's what correct looks like, here's how to get there." That shift changed how developers received design feedback entirely.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">📧</div>
-        <div class="r-text">
-          <h4>Email is the most underrated UX surface in enterprise products</h4>
-          <p>Most teams treat email templates as a dev task with some copy dropped in. Having UX ownership — and coding them myself — produced emails that actually felt like part of the product. That consistency matters more than most people realise.</p>
-        </div>
-      </div>
-      <div class="reflection-item">
-        <div class="r-icon">♿</div>
-        <div class="r-text">
-          <h4>Accessibility makes you a more precise designer</h4>
-          <p>WCAG compliance forced decisions I might have left vague — focus order, label hierarchy, touch target sizing. Every constraint surfaced an ambiguity that needed resolving. The product was sharper for it.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════
-     CONTACT FOOTER
-     ══════════════════════════════════════════════ -->
-
-<section id="contact" style="background:var(--navy); padding:100px 80px 0;">
-  <div style="max-width:1300px; margin:0 auto;">
-    <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px;" class="reveal">Let's Work Together</p>
-    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,80px); font-weight:900; color:var(--white); line-height:1.0; letter-spacing:-0.02em; margin-bottom:48px;" class="reveal">Got a project?<br><em style="color:var(--teal); font-style:italic;">Let's talk.</em></h2>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:80px;" class="reveal">
-      <a href="mailto:deepakarun08@gmail.com" style="display:flex; align-items:center; gap:20px; background:var(--navy-mid); border:1px solid rgba(255,255,255,0.07); padding:28px 32px; text-decoration:none; border-radius:2px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,180,160,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
-        <div style="width:44px; height:44px; background:rgba(0,180,160,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">✉️</div>
-        <div>
-          <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Email</div>
-          <div style="font-size:16px; font-weight:500; color:var(--white);">deepakarun08@gmail.com</div>
-        </div>
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <span class="contact-eyebrow reveal">Let's Work Together</span>
+    <h2 class="contact-heading reveal">Got a project?<br><em>Let's talk.</em></h2>
+    <div class="contact-cards reveal">
+      <a href="mailto:deepakarun08@gmail.com" class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div><div class="contact-card-label">Email</div><div class="contact-card-value">deepakarun08@gmail.com</div></div>
       </a>
-      <a href="tel:+919999619008" style="display:flex; align-items:center; gap:20px; background:var(--navy-mid); border:1px solid rgba(255,255,255,0.07); padding:28px 32px; text-decoration:none; border-radius:2px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,180,160,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
-        <div style="width:44px; height:44px; background:rgba(0,180,160,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">📱</div>
-        <div>
-          <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Mobile</div>
-          <div style="font-size:16px; font-weight:500; color:var(--white);">+91 99996 19008</div>
-        </div>
+      <a href="tel:+919999619008" class="contact-card">
+        <div class="contact-icon">📱</div>
+        <div><div class="contact-card-label">Mobile</div><div class="contact-card-value">+91 99996 19008</div></div>
       </a>
     </div>
-
-    <div style="border-top:1px solid rgba(255,255,255,0.07); padding:32px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div class="contact-footer-bar">
       <span style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:rgba(255,255,255,0.5);">Deepak Arun</span>
-      <span style="font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">Senior UX Designer · 10+ Years · Available for Opportunities</span>
+      <span style="font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">Senior UX Designer · 17+ Years · Available for Opportunities</span>
       <a href="#intro" style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.08em; text-decoration:none;">Back to Top ↑</a>
     </div>
   </div>
 </section>
 
-
-
 <script>
-  // Progress bar
   window.addEventListener('scroll', () => {
     const el = document.getElementById('progress-bar');
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    el.style.width = (scrollTop / docHeight * 100) + '%';
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    el.style.width = (window.scrollY / h * 100) + '%';
   });
-
-  // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); obs.unobserve(e.target); }
     });
   }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
-
-  // Lightbox
-  function openLightbox(src) {
-    document.getElementById('lightbox-img').src = src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  reveals.forEach(r => obs.observe(r));
 </script>
 </body>
 </html>

@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZAMS Customer Portal — Deepak Arun UX Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1e2e;
+    --navy-mid: #162436;
+    --navy-light: #1e3248;
+    --teal: #00b4a0;
+    --teal-light: #00d4bc;
+    --teal-faint: rgba(0,180,160,0.08);
+    --amber: #f59e0b;
+    --cream: #f5f0e8;
+    --cream-mid: #ede8de;
+    --text-primary: #0f1e2e;
+    --text-secondary: #4a6073;
+    --text-muted: #8299ab;
+    --white: #ffffff;
+    --border: rgba(15,30,46,0.1);
+    --border-teal: rgba(0,180,160,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+
+  /* ── PROGRESS BAR ── */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    width: 0%; z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  /* ── PORTFOLIO INTRO ── */
+  .portfolio-intro {
+    min-height: 100vh;
+    background: var(--cream);
+    display: flex; flex-direction: column;
+    justify-content: center;
+    padding: 140px 80px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-intro::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,160,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .portfolio-intro::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+  .intro-available {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,180,160,0.08);
+    border: 1px solid rgba(0,180,160,0.2);
+    border-radius: 40px;
+    padding: 6px 16px 6px 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.6s 0.1s forwards;
+  }
+  .intro-available span.dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--teal);
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .intro-greeting {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .intro-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(56px, 8vw, 110px);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.7s 0.3s forwards;
+  }
+  .intro-name .first { display: block; }
+  .intro-name .last {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--navy);
+  }
+  .intro-title-row {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 36px;
+    opacity: 0; animation: fadeUp 0.6s 0.45s forwards;
+  }
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--teal);
+  }
+  .intro-title-divider {
+    width: 40px; height: 1px;
+    background: var(--border);
+  }
+  .intro-title-years {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; color: var(--text-muted);
+    letter-spacing: 0.08em;
+  }
+  .intro-bio {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 680px;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.6s 0.55s forwards;
+  }
+  .intro-bio strong { color: var(--text-primary); font-weight: 600; }
+  .intro-actions {
+    display: flex; gap: 16px; align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.6s 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 2px;
+    font-size: 13px; font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 14px 32px;
+    border-radius: 2px;
+    font-size: 13px; font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: border-color 0.25s, color 0.25s;
+  }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+  .intro-skills-row {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.6s 0.75s forwards;
+	margin-bottom:48px
+  }
+  .skill-chip {
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+    background: var(--white);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .intro-stats-bar {
+    position: absolute;
+    bottom: 0; right: 0;
+    display: flex;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    opacity: 0; animation: fadeIn 0.8s 1s forwards;
+  }
+  .intro-stat {
+    padding: 28px 48px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .intro-stat:last-child { border-right: none; }
+  .intro-stat .n {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 900;
+    color: var(--text-primary); line-height: 1;
+  }
+  .intro-stat .n em { color: var(--teal); font-style: normal; }
+  .intro-stat .l {
+    font-size: 12px; font-weight: 400;
+    color: var(--text-muted); margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CASE STUDIES INDEX ── */
+  .cs-index {
+    padding: 80px;
+    border-bottom: 1px solid var(--border);
+    background: var(--white);
+  }
+  .cs-index-inner { max-width: 1300px; margin: 0 auto; }
+  .cs-index-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 40px;
+  }
+  .cs-index-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; font-weight: 700;
+  }
+  .cs-index-header span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .cs-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .cs-card {
+    background: var(--cream);
+    padding: 32px 28px;
+    text-decoration: none;
+    transition: background 0.25s;
+    position: relative;
+  }
+  .cs-card:hover { background: var(--white); }
+  .cs-card.active { background: var(--navy); }
+  .cs-card-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.1em; margin-bottom: 16px;
+    display: block;
+  }
+  .cs-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3; margin-bottom: 10px;
+  }
+  .cs-card.active h3 { color: var(--white); }
+  .cs-card p {
+    font-size: 13px; font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .cs-card.active p { color: rgba(255,255,255,0.5); }
+  .cs-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px; border-radius: 20px;
+    background: rgba(0,180,160,0.08);
+    color: var(--teal); letter-spacing: 0.06em;
+  }
+  .cs-card.active .cs-tag {
+    background: rgba(0,180,160,0.15);
+  }
+  .cs-coming {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    justify-content: flex-end;
+    padding: 120px 80px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,180,160,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,160,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-bg-glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,160,0.12) 0%, transparent 70%);
+    top: -200px; right: -150px;
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-subtitle {
+    font-size: 18px; font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-meta {
+    display: flex; gap: 48px; align-items: flex-start;
+    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+	margin-bottom:64px;
+  }
+  .hero-meta-item label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block; margin-bottom: 6px;
+  }
+  .hero-meta-item span {
+    font-size: 15px; font-weight: 500; color: var(--white);
+  }
+  .hero-stat-strip {
+    position: absolute; bottom: 0; right: 0;
+    display: flex;
+    opacity: 0; animation: fadeIn 1s 1.2s forwards;
+  }
+  .stat-block {
+    padding: 32px 48px;
+    border-left: 1px solid rgba(255,255,255,0.07);
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .stat-block .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; font-weight: 900;
+    color: var(--teal); line-height: 1;
+  }
+  .stat-block .label {
+    font-size: 12px; font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px; letter-spacing: 0.04em;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 100px 80px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .section-full {
+    padding: 100px 0;
+  }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+	opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+  }
+  .section-title em { font-style: italic; color: var(--teal); }
+  .section-body {
+    font-size: 17px; font-weight: 300;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  /* ── CONTEXT BAND ── */
+  .context-band {
+    background: var(--navy);
+    padding: 80px;
+  }
+  .context-band-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: start;
+  }
+  .context-band .section-title { color: var(--white); }
+  .context-band .section-body { color: rgba(255,255,255,0.55); }
+  .quote-block {
+    background: var(--navy-mid);
+    border-left: 3px solid var(--teal);
+    padding: 32px 36px;
+    border-radius: 2px;
+  }
+  .quote-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .quote-block cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ── PROBLEM CARDS ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .problem-card {
+    background: var(--white);
+    padding: 40px 36px;
+    position: relative;
+    transition: background 0.3s;
+  }
+  .problem-card:hover { background: var(--cream); }
+  .problem-card .icon {
+    width: 44px; height: 44px;
+    background: var(--teal-faint);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .problem-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .problem-card p {
+    font-size: 14px; font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  /* ── ROLE STRIP ── */
+  .role-strip {
+    background: var(--cream-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 80px;
+  }
+  .role-strip-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: flex; gap: 60px; align-items: center;
+  }
+  .role-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .role-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag {
+    padding: 6px 16px;
+    border-radius: 40px;
+    font-size: 13px; font-weight: 500;
+    border: 1px solid var(--border-teal);
+    color: var(--teal);
+    background: var(--teal-faint);
+  }
+
+  /* ── PROCESS TIMELINE ── */
+  .process-section {
+    background: var(--navy);
+    padding: 100px 80px;
+  }
+  .process-inner { max-width: 1300px; margin: 0 auto; }
+  .process-inner .section-title { color: var(--white); margin-bottom: 64px; }
+  .process-timeline {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .process-timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+  .process-step {
+    flex: 1;
+    padding-top: 64px;
+    padding-right: 32px;
+    position: relative;
+    cursor: pointer;
+  }
+  .step-dot {
+    position: absolute;
+    top: 20px; left: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    background: var(--navy);
+    transition: all 0.3s;
+  }
+  .process-step:hover .step-dot,
+  .process-step.active .step-dot {
+    border-color: var(--teal);
+    background: var(--teal);
+    box-shadow: 0 0 0 6px rgba(0,180,160,0.15);
+  }
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; font-weight: 500;
+    color: var(--teal);
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 12px;
+  }
+  .step-body {
+    font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+  }
+
+  /* ── DESIGN DECISIONS ── */
+  .decisions-section { padding: 100px 80px; }
+  .decisions-inner { max-width: 1300px; margin: 0 auto; }
+  .decision-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    padding: 64px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .decision-row:last-child { border-bottom: none; }
+  .decision-meta { position: sticky; top: 100px; }
+  .decision-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px; font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .decision-meta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 16px;
+  }
+  .decision-screen-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .decision-content p {
+    font-size: 16px; font-weight: 300;
+    line-height: 1.85; color: var(--text-secondary);
+    margin-bottom: 24px;
+  }
+  .decision-content p:last-child { margin-bottom: 0; }
+  .decision-content strong { color: var(--text-primary); font-weight: 600; }
+  .insight-box {
+    background: var(--navy);
+    border-left: 3px solid var(--teal);
+    padding: 24px 28px;
+    border-radius: 2px;
+    margin-top: 28px;
+  }
+  .insight-box p {
+    font-size: 14px !important;
+    color: rgba(255,255,255,0.65) !important;
+    margin-bottom: 0 !important;
+  }
+  .insight-box strong { color: var(--teal) !important; }
+
+  /* ── SCREEN SHOWCASE ── */
+  .screens-section {
+    background: var(--navy-mid);
+    padding: 100px 80px;
+  }
+  .screens-inner { max-width: 1300px; margin: 0 auto; }
+  .screens-inner .section-title { color: var(--white); }
+  .screens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .screen-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .screen-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+  }
+  .screen-card.wide { grid-column: span 2; }
+  .screen-img {
+    width: 100%; display: block;
+    background: #1a2d40;
+  }
+  .screen-caption {
+    padding: 20px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .screen-name {
+    font-size: 14px; font-weight: 500;
+    color: rgba(255,255,255,0.75);
+  }
+  .screen-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; font-weight: 500;
+    color: var(--teal);
+    background: rgba(0,180,160,0.1);
+    padding: 4px 10px; border-radius: 20px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-section { padding: 100px 80px; }
+  .outcomes-inner { max-width: 1300px; margin: 0 auto; }
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-top: 60px;
+  }
+  .outcome-card {
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .outcome-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .outcome-card:hover::before { transform: scaleX(1); }
+  .outcome-card:hover {
+    border-color: var(--border-teal);
+    transform: translateY(-2px);
+  }
+  .outcome-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .outcome-label {
+    font-size: 14px; font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .outcome-detail {
+    font-size: 13px; font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection-section {
+    background: var(--navy);
+    padding: 100px 80px;
+  }
+  .reflection-inner {
+    max-width: 1300px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .reflection-inner .section-title { color: var(--white); }
+  .reflection-inner .section-body { color: rgba(255,255,255,0.55); }
+  .reflection-list { margin-top: 32px; }
+  .reflection-item {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; gap: 20px; align-items: start;
+  }
+  .reflection-item:last-child { border-bottom: none; }
+  .r-icon {
+    width: 32px; height: 32px; flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(0,180,160,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; margin-top: 2px;
+  }
+  .r-text h4 {
+    font-size: 15px; font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+  .r-text p {
+    font-size: 14px; font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+
+  /* ── NEXT CASE STUDY CTA ── */
+  .cta-section {
+    padding: 100px 80px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .cta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--teal);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 700;
+    margin-bottom: 40px;
+    line-height: 1.2;
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 2px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.3s;
+  }
+  .cta-btn:hover { background: var(--teal); }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.92);
+    align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 100%; max-height: 90vh;
+    border-radius: 4px;
+    object-fit: contain;
+  }
+  .lightbox-close {
+    position: absolute; top: 24px; right: 32px;
+    color: rgba(255,255,255,0.5);
+    font-size: 28px; cursor: pointer;
+    transition: color 0.2s;
+    background: none; border: none;
+  }
+  .lightbox-close:hover { color: var(--white); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s, transform 0.7s;
+	opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── SCREEN PLACEHOLDER IMAGES ── */
+  .screen-mock {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #162436 0%, #1e3248 100%);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-mock::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(0,180,160,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,180,160,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .screen-mock-icon { font-size: 32px; opacity: 0.3; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero { padding: 120px 40px 80px; }
+    .hero-stat-strip { position: relative; margin-top: 48px; }
+    .context-band-inner,
+    .reflection-inner { grid-template-columns: 1fr; gap: 48px; }
+    .problem-grid { grid-template-columns: 1fr 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .screens-grid { grid-template-columns: 1fr; }
+    .screen-card.wide { grid-column: span 1; }
+    .decision-row { grid-template-columns: 1fr; gap: 32px; }
+    nav { padding: 20px 32px; }
+    .section, .decisions-section, .outcomes-section, .cta-section { padding: 80px 40px; }
+    .process-section, .screens-section, .reflection-section { padding: 80px 40px; }
+    .context-band, .role-strip { padding: 60px 40px; }
+    .portfolio-intro { padding: 120px 40px 80px; }
+    .cs-index { padding: 60px 40px; }
+    .cs-cards { grid-template-columns: 1fr 1fr; }
+    .intro-stats-bar { position: relative; margin-top: 48px; border: 1px solid var(--border); }
+  }
+  @media (max-width: 640px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .process-timeline { flex-direction: column; }
+    .process-timeline::before { display: none; }
+    .hero-stat-strip { flex-direction: column; }
+    .intro-stats-bar { flex-direction: column; }
+    .nav-links { display: none; }
+    .cs-cards { grid-template-columns: 1fr; }
+    .intro-name { font-size: 56px; }
+  }
+</style>
+
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Deepak Arun</a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="cs01-zams.html" style="color:var(--teal);">ZAMS Portal</a>
+    <a href="cs02-aim.html">AIM</a>
+    <a href="cs03-warehouse.html">Warehouse Portal</a>
+    <a href="cs04-sales-accelerator.html">Sales Accelerator</a>
+  </div>
+</nav>
+
+<div id="progress-bar"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<div style="background:var(--navy); padding:96px 64px 48px 64px; border-top:4px solid var(--teal);" id="cs04">
+  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div>
+      <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:8px;">Case Study 01 — Deep Dive</p>
+      <p style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--white); line-height:1.2;">ZAMS — <em style="font-style:italic; color:var(--teal);">Customer Portal · End-to-End Order Management</em></p>
+    </div>
+    <div style="font-family:'DM Mono',monospace; font-size:12px; color:rgba(255,255,255,0.3); letter-spacing:0.08em;">Conneqtion Group · Oracle EBS · Supply Chain</div>
+  </div>
+</div>
+
+<!-- CS04 HERO -->
+<section class="hero" style="min-height:85vh;">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-bg-glow" style="left:-150px; right:auto;"></div>
+  <p class="hero-eyebrow">Case Study 01 · Supply Chain Portal · Oracle EBS Integration · Multi-role UX</p>
+  <h1 class="hero-title">From Phone Calls<br>and Emails to a <em>Single Portal.</em></h1>
+  <p class="hero-subtitle">How I designed ZAMS — a comprehensive customer-facing order management portal that digitised the entire supply chain journey from web order creation through shipment tracking, damage reporting, and invoice management. Seven user roles. One coherent system. As the sole UX designer, I owned everything from discovery to wireframes.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <label>Client</label>
+      <span>ZAMS / Conneqtion Group</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>Platform</label>
+      <span>Web Portal (Responsive)</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>My Role</label>
+      <span>Sole UX Designer</span>
+    </div>
+    <div class="hero-meta-item">
+      <label>Integration</label>
+      <span>Oracle EBS · ShipsGo API</span>
+    </div>
+  </div>
+  <div class="hero-stat-strip">
+    <div class="stat-block">
+      <div class="num">7</div>
+      <div class="label">User Roles Designed</div>
+    </div>
+    <div class="stat-block">
+      <div class="num">11+</div>
+      <div class="label">Core Screens / Modules</div>
+    </div>
+    <div class="stat-block">
+      <div class="num">0→1</div>
+      <div class="label">Greenfield Product</div>
+    </div>
+  </div>
+</section>
+
+<!-- CS04 CONTEXT -->
+<section class="section-full">
+  <div class="context-band">
+    <div class="context-band-inner">
+      <div>
+        <p class="section-eyebrow reveal">The Problem</p>
+        <h2 class="section-title reveal">A supply chain managed<br>through <em>emails and phone calls.</em></h2>
+        <p class="section-body reveal">ZAMS — a distribution business operating across the Gulf region — was managing its entire order lifecycle manually. Customers called or emailed to place orders. Sales teams printed documents and made phone calls to operations. Logistics updates were communicated through WhatsApp messages. Every handoff was a potential failure point, and there was no single source of truth for order status across the chain.</p>
+        <br>
+        <p class="section-body reveal" style="margin-top:16px;">The business needed a portal that would serve every participant — customers placing orders, sales reps reviewing them, operations teams posting to Oracle EBS, logistics tracking shipments, procurement handling returns — while keeping each role's experience focused and uncluttered. I was brought in as the sole UX designer to take this from zero to a fully specified, wireframed system ready for development.</p>
+      </div>
+      <div class="reveal">
+        <div class="quote-block">
+          <p>"Our customers had no visibility into their own orders once they were placed. They'd call us, we'd call the warehouse, the warehouse would call logistics. It was a game of telephone — and things got lost."</p>
+          <cite>— ZAMS Business Stakeholder, Discovery Session</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CS04 PROBLEM CARDS -->
+<div style="max-width:1300px; margin:0 auto; padding:0 80px 0;">
+  <div class="problem-grid reveal">
+    <div class="problem-card">
+      <div class="icon">📞</div>
+      <h3>No Self-Service Channel</h3>
+      <p>Customers had no way to place, track, or manage their orders independently. Every interaction required contacting a salesperson — creating bottlenecks, delays, and frustration on both sides.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">🔗</div>
+      <h3>Broken Handoff Chain</h3>
+      <p>Orders moved through Customer → Sales → Operations → Logistics → Warehouse without any shared system. Each handoff relied on manual communication — email, calls, spreadsheets — and was a potential point of failure.</p>
+    </div>
+    <div class="problem-card">
+      <div class="icon">📦</div>
+      <h3>Returns Had No Process</h3>
+      <p>When goods arrived damaged, there was no structured way to report or process returns. Customers had no mechanism to upload evidence, track approval status, or follow the credit memo process.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CS04 ROLE STRIP -->
+<div class="role-strip" style="margin-top:80px;">
+  <div class="role-strip-inner">
+    <span class="role-label">My Full Scope</span>
+    <div class="role-tags">
+      <span class="tag">Sole UX Designer</span>
+      <span class="tag">User Research</span>
+      <span class="tag">Competitive Analysis</span>
+      <span class="tag">User Interviews</span>
+      <span class="tag">Process Mapping</span>
+      <span class="tag">Information Architecture</span>
+      <span class="tag">Wireframing (11+ screens)</span>
+      <span class="tag">Multi-role UX Design</span>
+      <span class="tag">Oracle EBS Integration UX</span>
+      <span class="tag">Solution Design Document</span>
+    </div>
+  </div>
+</div>
+
+<!-- CS04 THE 7 ROLES -->
+<div style="background:var(--white); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:80px;">
+  <div style="max-width:1300px; margin:0 auto;">
+    <p class="section-eyebrow reveal">The 7 User Roles</p>
+    <h2 class="section-title reveal" style="margin-bottom:48px;">Seven distinct personas.<br><em>One coherent system.</em></h2>
+    <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border);" class="reveal">
+      <div style="background:var(--navy); padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 01</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:8px;">Customer</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.65;">Places web orders, tracks shipments, views invoices, reports damage. Primary beneficiary of the portal.</p>
+      </div>
+      <div style="background:var(--cream); padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 02</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Sales / Sales Manager</h4>
+        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Reviews and approves web orders, can create orders on behalf of customers, manages amendments.</p>
+      </div>
+      <div style="background:var(--cream); padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 03</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Operations</h4>
+        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Posts approved orders to Oracle EBS, creates sales orders, manages proforma invoices and shipment details.</p>
+      </div>
+      <div style="background:var(--cream); padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 04</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Procurement</h4>
+        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Reviews and approves damage/return requests. Coordinates RMA processing with operations and EBS.</p>
+      </div>
+      <div style="background:var(--cream); padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 05</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Logistics</h4>
+        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Manages shipping arrangements, uploads BOL and container documents, tracks real-time shipment via ShipsGo API.</p>
+      </div>
+      <div style="background:var(--cream); padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 06</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; margin-bottom:8px;">Finance</h4>
+        <p style="font-size:13px; font-weight:300; color:var(--text-secondary); line-height:1.65;">Uploads credit memos and billing documents to the portal following EBS processing of approved returns.</p>
+      </div>
+      <div style="background:var(--navy); padding:28px 24px; grid-column:span 2;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Role 07</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--white); margin-bottom:8px;">Admin</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.5); line-height:1.65;">Full system access — manages users, assigns roles, configures container settings, manages notification templates, views error logs. The control layer that keeps the entire portal operational.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CS04 PROCESS -->
+<section class="process-section">
+  <div class="process-inner">
+    <p class="section-eyebrow reveal">My UX Process</p>
+    <h2 class="section-title reveal">Designing a system I had to<br><em>discover from scratch.</em></h2>
+    <div class="process-timeline reveal">
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">01 — Discover</div>
+        <div class="step-title">Research & Interviews</div>
+        <div class="step-body">Conducted user interviews with each of the 7 roles — customers, sales reps, ops teams, logistics coordinators. Mapped the current manual process flow to understand every handoff, pain point and workaround in the existing system.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">02 — Analyse</div>
+        <div class="step-title">Competitive Analysis</div>
+        <div class="step-body">Analysed comparable B2B order management portals and supply chain platforms. Identified interaction patterns for order status timelines, multi-role dashboards, and damage reporting flows that could be adapted for ZAMS's context.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">03 — Map</div>
+        <div class="step-title">Process Flow Design</div>
+        <div class="step-body">Created four detailed cross-functional process flows: Customer Workflow, Sales Workflow, Operations Workflow, and Sales Return Workflow. These became the backbone of the entire UX architecture and were validated with stakeholders before any screen design began.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">04 — Design</div>
+        <div class="step-title">Wireframe All Screens</div>
+        <div class="step-body">Designed 11+ core screens with complete field-level specifications — dashboard, web order creation, sales order overview, track shipment, price list, sales invoice, report damage, containerisation settings, manage users, manage notifications, and error notification.</div>
+      </div>
+      <div class="process-step">
+        <div class="step-dot"></div>
+        <div class="step-num">05 — Document</div>
+        <div class="step-title">Solution Design Document</div>
+        <div class="step-body">Authored the complete Solution Design Document — a 55-page specification covering all process flows, field-level validations, role-based access rules, API integration points (Oracle EBS, ShipsGo), and system architecture. A reference document for the entire development team.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS04 DESIGN DECISIONS -->
+<section class="decisions-section">
+  <div class="decisions-inner">
+    <p class="section-eyebrow reveal">Key Design Decisions</p>
+    <h2 class="section-title reveal">Five decisions that shaped<br>a <em>zero-to-one system.</em></h2>
+
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">01</div>
+        <h3>A Dashboard That Answers "What Needs Me Right Now?"</h3>
+        <div class="decision-screen-label">Dashboard · All Roles · Contextual Tiles</div>
+      </div>
+      <div class="decision-content">
+        <p>When I started designing the dashboard, the stakeholder request was straightforward: "a page with all the key metrics." But when I mapped what each role actually needed to see when they logged in, it became clear that a generic metrics dashboard would serve no one well. A customer logging in wants to know if their shipments are on track. An operations user needs to see pending approvals. An admin needs to know if any error notifications have fired.</p>
+        <p>I designed a <strong>role-aware dashboard</strong> where the tile set, notification stream, and action areas adapt to the logged-in user. Every role sees their specific KPIs — Total Orders, Pending Validations, Blocked Styles — and a "My Contact" panel showing their assigned salesperson with direct call/email actions. The "Start New Allocation" CTA is prominent for customers but completely absent for operations users who never create orders. The dashboard isn't a homepage — it's a <strong>command centre tuned to each role's primary job.</strong></p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "I asked every user we interviewed the same question: 'What's the first thing you check when you start your workday?' The answers were completely different for each role — and those answers became the tile architecture of the dashboard."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">02</div>
+        <h3>Container Auto-Suggestion — Designing for a Constraint Nobody Had Digitised</h3>
+        <div class="decision-screen-label">Web Order Creation · Container Logic</div>
+      </div>
+      <div class="decision-content">
+        <p>One of the most surprising discoveries from user interviews was that the current Excel-based order process required customers to manually verify whether their selected items would physically fit inside a shipping container. There was no tool, no calculation — just experience and guesswork. Occasionally they'd over-order, the warehouse couldn't load, and the entire shipment had to be rearranged at cost.</p>
+        <p>I designed an <strong>automatic container suggestion engine</strong> as part of the order creation flow. As the customer adds items, the system calculates total weight and volume in real time, compares against the Container Master Table settings for each supplier, and displays visual fill indicators — showing percentage of container weight and volume used. A "Suggested Container Size" badge updates dynamically. If the customer is approaching capacity, they see it before they submit, not after the warehouse calls them.</p>
+        <p>This wasn't just a UX feature — it was a <strong>supply chain intelligence layer</strong> that had never existed in the manual process, and it became one of the most valued features in stakeholder review sessions.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "The most impactful UX work on this project wasn't a navigation redesign or a visual polish pass. It was turning an invisible logistics constraint — container capacity — into a real-time visual feedback system. That's where design created real business value."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">03</div>
+        <h3>A 9-Milestone Order Status Timeline — Not a Status Badge</h3>
+        <div class="decision-screen-label">Sales Order Overview · Track Shipment · Status Architecture</div>
+      </div>
+      <div class="decision-content">
+        <p>Early in the process, the team assumed order status could be represented with simple badges — "In Progress," "Shipped," "Delivered." But when I mapped the actual order journey with the operations team, we counted nine meaningful milestones between order creation and delivery: Web Order Created → Web Order Approved → Sales Order Generated → Order Booked → Estimated Ship Date → Estimated Arrival Date → Good Ready Date → Actual Departure → Actual Arrival.</p>
+        <p>Compressing nine real events into three generic labels would have destroyed the transparency the portal was meant to provide. I designed a <strong>horizontal milestone timeline</strong> on both the Sales Order Overview page and the Track Shipment screen — each milestone shows its date when reached, and unfilled milestones show what's upcoming. Customers can see exactly where in the journey their order sits, not just a vague status badge.</p>
+        <p>Additionally, the Track Shipment screen integrated a <strong>real-time container map</strong> via ShipsGo API — giving customers GPS-level visibility into shipments in transit.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "The status timeline decision came directly from a user interview where a customer said 'I don't want to know that my order is In Progress — I want to know where in the process it actually is.' That one sentence shaped a core interaction pattern across the entire portal."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">04</div>
+        <h3>Role-Differentiated Document Access — Same Page, Different Permissions</h3>
+        <div class="decision-screen-label">Sales Invoice · Supporting Documents · Role-based Access</div>
+      </div>
+      <div class="decision-content">
+        <p>The Sales Invoice Detail page needed to serve two very different user types simultaneously: customers who should only be able to view and download shipping documents, and operations users who needed to both view existing documents and upload new billing documents with drag-and-drop functionality. Building two separate invoice pages would have doubled the development surface and created maintenance complexity.</p>
+        <p>I designed a <strong>single invoice page with role-aware document sections</strong>. Both roles see the "Shipping Documents" section with identical view/download capability. But the operations view adds a second "Billing Documents" section and an "Upload Documents" drag-and-drop area with file type categorisation. The page structure is identical — what changes is what's shown. This pattern repeated across multiple screens in the portal, and I documented it as a design principle in the Solution Design Document: <strong>"Same URL, role-adaptive content."</strong></p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "Every time I was tempted to build separate pages for different roles, I forced myself to ask: is this actually a different task, or just a different permission level on the same task? Usually it was the latter, and that distinction saved significant development complexity."</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="decision-row reveal">
+      <div class="decision-meta">
+        <div class="decision-number">05</div>
+        <h3>Notification Templates as a User-Configurable System</h3>
+        <div class="decision-screen-label">Manage Notifications · Admin Screen · Template Engine</div>
+      </div>
+      <div class="decision-content">
+        <p>The portal needed to send triggered email notifications at over a dozen workflow events — order submitted, order approved, order rejected, shipment ready, damage report received, RMA approved, and more. The standard approach would have been to hardcode these notification templates in the backend and let developers manage them. I pushed back on this for a specific reason: business workflows evolve, and hardcoded templates become bottlenecks.</p>
+        <p>I designed a <strong>fully configurable notification template management screen</strong> for admin users. Admins can create, edit, and delete notification templates by specifying Subject, Target Role, and Email Body. Crucially, the body supports dynamic <strong>variable tags</strong> — #WEB_ORDER_NUMBER#, #CUSTOMER_NAME#, #SALES_NAME#, #LINK#, #TIMESTAMP# — which the system replaces with real-time values when triggered. Admins can see a reference panel of all available tags alongside the editor.</p>
+        <p>This turned a potential developer bottleneck into a self-service admin capability — meaning the business could update notification copy, add new notification types, or adjust role targeting without a single development sprint.</p>
+        <div class="insight-box">
+          <p><strong>Interview talking point:</strong> "Designing the notification system as admin-configurable rather than developer-hardcoded was a product thinking decision that came from understanding the client's team capacity. They had limited dev resources post-launch. Every feature I could make self-service was one fewer support ticket."</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CS04 WIREFRAME SHOWCASE -->
+<section class="screens-section">
+  <div class="screens-inner">
+    <p class="section-eyebrow reveal">Wireframe Walkthrough</p>
+    <h2 class="section-title reveal">The portal, <em>screen by screen.</em></h2>
+    <p style="color:rgba(255,255,255,0.4); font-size:14px; margin-top:12px; margin-bottom:16px; font-weight:300;" class="reveal">All wireframes from the Solution Design Document — 11 modules across 7 user roles. High-fidelity screens available on request.</p>
+
+    <!-- Module Overview Cards -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:40px;" class="reveal">
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 01</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Dashboard</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Real-time KPI tiles (Total Orders, Pending Validations, Track Shipments, Invoiced Orders), notifications panel, quick-track widget, sales invoice summary and My Contact card. Role-adaptive for all 7 user types.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">All Roles</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 02</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Web Order Creation</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Order Details header with organisation, shipment type, PO number and port of discharge. Item list table with auto-populated pricing from EBS, MOQ enforcement, container fill visualisation with progress bars, and estimated shipment/arrival dates.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Sales</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Operations</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 03</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Web Orders List</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Global search, status filter (Draft/Pending/Approved by Sales/Ops/Closed), date range filter, sortable table with row-level Edit/Duplicate/Delete actions. Create Web Order CTA visible only for Customer and Sales roles.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Sales</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 04</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Sales Order Overview</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Read-only order details with the 7-milestone Sales Order Status timeline (SO Generated → Order Booked → Est. Ship → Est. Arrival → Good Ready → Actual Departure → Actual Arrival). Item list, container fill visualisation, comments thread.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">All Internal Roles</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 05</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Track Shipment</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Search by booking ref, container number or invoice number. Shipment details (carrier, ETA/ETD, container list), 9-step order status timeline, real-time map via ShipsGo API integration with carrier type, container, and booking reference inputs.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">All Roles</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 06</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Sales Invoice & Documents</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Invoice list with vessel, container, ETD/ETA. Invoice detail with item table and Supporting Documents — Customer view: Shipping Docs only. Operations view: Shipping + Billing Docs + drag-and-drop upload with file categorisation.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Operations</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 07</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Report Damage (Returns)</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Damage list with invoice filter, Report New Damage CTA. Create flow: invoice selection auto-populates items from EBS, quantity to return + reason dropdown + proof of damage image upload. Procurement Approve/Reject/Amend flow with comments. RMA creation in EBS by operations.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Procurement</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Operations</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Module 08</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Price List</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;">Customer-specific active items from Oracle EBS price list. Filterable by Operating Unit and Item Code. Read-only table showing Item Code, Description, UOM, Unit Selling Price, Currency, Brand, Shelf Life, MOQ (Warehouse & Factory). Export to Excel.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Customer</span>
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Sales</span>
+        </div>
+      </div>
+
+      <div style="background:var(--navy-light); border:1px solid rgba(255,255,255,0.06); border-radius:6px; padding:28px 24px;">
+        <div style="font-family:'DM Mono',monospace; font-size:10px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:12px;">Modules 09–11</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); margin-bottom:10px;">Admin Modules</h4>
+        <p style="font-size:13px; font-weight:300; color:rgba(255,255,255,0.45); line-height:1.7;"><strong style="color:rgba(255,255,255,0.7);">Manage Users</strong> — Create, edit, activate/deactivate users across all 7 roles. MFA email trigger on creation.<br><br><strong style="color:rgba(255,255,255,0.7);">Containerisation Settings</strong> — Warehouse and Factory container specs with volume/weight limits, supplier-level configuration.<br><br><strong style="color:rgba(255,255,255,0.7);">Manage Notifications</strong> — Dynamic email template engine with role-targeting and variable tags.</p>
+        <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:6px;">
+          <span style="font-family:'DM Mono',monospace; font-size:9px; background:rgba(0,180,160,0.1); color:var(--teal); padding:3px 8px; border-radius:20px;">Admin Only</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HiFi callout -->
+    <div style="margin-top:40px; background:rgba(0,180,160,0.08); border:1px solid rgba(0,180,160,0.2); border-radius:4px; padding:28px 32px; display:flex; align-items:center; gap:24px;" class="reveal">
+      <div style="font-size:28px; flex-shrink:0;">🎨</div>
+      <div>
+        <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">High-Fidelity Screens</p>
+        <p style="font-size:14px; font-weight:300; color:rgba(255,255,255,0.6); line-height:1.7;">High-fidelity designs based on these wireframes are available. The wireframes in the Solution Design Document define complete field-level specifications, validation rules, and role-based access logic — the visual design layer maps directly to this structural foundation.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CS04 OUTCOMES -->
+<section class="outcomes-section">
+  <div class="outcomes-inner">
+    <p class="section-eyebrow reveal">Outcomes & Impact</p>
+    <h2 class="section-title reveal">What ZAMS Portal<br><em>made possible.</em></h2>
+    <div class="outcomes-grid reveal">
+      <div class="outcome-card">
+        <div class="outcome-num">7</div>
+        <div class="outcome-label">Roles, One System</div>
+        <div class="outcome-detail">Customer, Sales, Sales Manager, Operations, Procurement, Logistics, Finance and Admin — all served within a single coherent portal with role-adaptive content.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">0→1</div>
+        <div class="outcome-label">Greenfield Delivery</div>
+        <div class="outcome-detail">Delivered a complete, development-ready UX specification for a product that had never existed — from blank page to a 55-page Solution Design Document with wireframes for every module.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">9</div>
+        <div class="outcome-label">Order Milestones Visible</div>
+        <div class="outcome-detail">Customers gained real-time visibility across 9 supply chain milestones — replacing phone calls and emails with self-service transparency for the first time.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">∞</div>
+        <div class="outcome-label">Configurable Notifications</div>
+        <div class="outcome-detail">The admin-configurable notification template system eliminated the need for developer involvement in email content changes — a self-service capability that scales with the business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CS04 REFLECTION -->
+<section class="reflection-section">
+  <div class="reflection-inner">
+    <div>
+      <p class="section-eyebrow reveal">Reflection</p>
+      <h2 class="section-title reveal">What building<br><em>from zero taught me.</em></h2>
+      <p class="section-body reveal">ZAMS was the most end-to-end UX engagement I've worked on — from blank-slate discovery through to a production-ready specification document. The lessons were proportionally deep.</p>
+    </div>
+    <div class="reflection-list reveal">
+      <div class="reflection-item">
+        <div class="r-icon">🗺️</div>
+        <div class="r-text">
+          <h4>Process mapping is design work</h4>
+          <p>The four cross-functional workflow diagrams — Customer, Sales, Operations, Returns — were the most impactful design deliverables on this project. Getting the process right before touching any screen design meant every subsequent UX decision had a solid foundation. If I'd skipped directly to wireframes, I'd have designed the wrong screens confidently.</p>
+        </div>
+      </div>
+      <div class="reflection-item">
+        <div class="r-icon">🧩</div>
+        <div class="r-text">
+          <h4>Role complexity is best resolved early, not patched late</h4>
+          <p>With 7 distinct user roles, there was constant temptation to design for the "primary" user (the customer) and adapt the rest later. Every time I followed that shortcut in early sketches, I'd hit a conflict with an internal role's needs that required rework. Designing all 7 role journeys in parallel — even roughly — was the right call.</p>
+        </div>
+      </div>
+      <div class="reflection-item">
+        <div class="r-icon">⚙️</div>
+        <div class="r-text">
+          <h4>The container auto-suggestion was the most underestimated feature</h4>
+          <p>It took me a while to convince stakeholders this was worth the complexity. They saw it as a "nice to have." After two rounds of review, when they realised it would eliminate an entire class of operational errors that had been costing them money, it became a must-have. Sometimes the designer's job is to make the business see the value in their own problems.</p>
+        </div>
+      </div>
+      <div class="reflection-item">
+        <div class="r-icon">📄</div>
+        <div class="r-text">
+          <h4>A good SDD is a design artefact, not just a technical document</h4>
+          <p>Writing the 55-page Solution Design Document forced me to think through every edge case, every validation rule, every empty state and error condition. The act of specifying it in writing surfaced about 30% of the design problems I'd missed in wireframes alone. I now treat documentation as the final phase of design thinking, not an afterthought.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section style="background:var(--cream-mid); padding:60px 80px; border-top:1px solid var(--border);">
+  <div style="max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+    <div></div>
+    <a href="index.html" style="font-family:'DM Mono',monospace; font-size:12px; color:var(--text-muted); letter-spacing:0.08em; text-decoration:none;">↑ Back to All Work</a>
+    <div><a href="cs02-aim.html" class="btn-primary">AIM — Case Study 02 →</a></div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--navy); padding:100px 80px 0;">
+  <div style="max-width:1300px; margin:0 auto;">
+    <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20px;" class="reveal">Let's Work Together</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(40px,6vw,80px); font-weight:900; color:var(--white); line-height:1.0; letter-spacing:-0.02em; margin-bottom:48px;" class="reveal">Got a project?<br><em style="color:var(--teal); font-style:italic;">Let's talk.</em></h2>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:80px;" class="reveal">
+      <a href="mailto:deepakarun08@gmail.com" style="display:flex; align-items:center; gap:20px; background:var(--navy-mid); border:1px solid rgba(255,255,255,0.07); padding:28px 32px; text-decoration:none; border-radius:2px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,180,160,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="width:44px; height:44px; background:rgba(0,180,160,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">✉️</div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Email</div>
+          <div style="font-size:16px; font-weight:500; color:var(--white);">deepakarun08@gmail.com</div>
+        </div>
+      </a>
+      <a href="tel:+919999619008" style="display:flex; align-items:center; gap:20px; background:var(--navy-mid); border:1px solid rgba(255,255,255,0.07); padding:28px 32px; text-decoration:none; border-radius:2px; transition:border-color 0.25s;" onmouseover="this.style.borderColor='rgba(0,180,160,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+        <div style="width:44px; height:44px; background:rgba(0,180,160,0.12); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0;">📱</div>
+        <div>
+          <div style="font-family:'DM Mono',monospace; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;">Mobile</div>
+          <div style="font-size:16px; font-weight:500; color:var(--white);">+91 99996 19008</div>
+        </div>
+      </a>
+    </div>
+
+    <div style="border-top:1px solid rgba(255,255,255,0.07); padding:32px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <span style="font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:rgba(255,255,255,0.5);">Deepak Arun</span>
+      <span style="font-family:'DM Mono',monospace; font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.08em;">Senior UX Designer · 10+ Years · Available for Opportunities</span>
+      <a href="#intro" style="font-family:'DM Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.08em; text-decoration:none;">Back to Top ↑</a>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress-bar');
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    el.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+  
+
+  // Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progress-bar');
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    el.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+ 
+ 
+   const reveals = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // optional (animate once)
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  reveals.forEach(el => observer.observe(el));
+ 
+
+</script>
+</body>
+</html>
